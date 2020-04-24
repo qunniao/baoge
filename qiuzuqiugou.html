@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>库房滴滴</title>
+    <link rel="Shortcut Icon" href="./src/assets/logo1.png" />
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/qiuzuqiugou.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/weui.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/jquery-weui.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/dialog.css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YcOGuCXZOmSuEC3cKfDTbDlI"></script>
+    <script src="./src/bases/js/vue.js"></script>
+    <script src="./src/bases/js/iscroll.js"></script>
+    <script src="./src/bases/js/jquery-2.1.4.js"></script>
+    <script src="./src/bases/js/fastclick.js"></script>
+    <script src="src/bases/js/jquery-weui.js"></script>
+    <script src="./src/bases/js/common.1.js"></script>
+    <script src="./src/bases/js/mDialogMin.js"></script>
+    <script src="./src/bases/js/phone.js"></script>
+    <script>
+        ! function(designWidth) {
+            if (/Android(?:\s+|\/)(\d+\.\d+)?/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / designWidth;
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',minimum-scale=' + phoneScale + ',maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=' + designWidth + ',user-scalable=no,target-densitydpi=device-dpi,minimal-ui,viewport-fit=cover">');
+            }
+        }(640);
+    </script>
+    <style>
+        #wrapper ul li:nth-child(5) a {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="header-one">
+                <a href="index.html">
+                    <h2>库房滴滴</h2>
+                </a>
+                <div class="map">
+                    <a href="allcity.html">
+                        <div class="mycity" @click="selectLocation()">
+                            {{city}}
+                            <img src="./src/assets/xiajiantou.png" style="width:10px;height:10px">
+                        </div>
+                    </a>
+                </div>
+                <div class="phone">
+                    <h4><a href="tel:400-0571-233">400-0571-233</a></h4>
+                    <img src="./src/assets/phone.png">
+                </div>
+            </div>
+            <div class="header-two">
+                <div id="wrapper">
+                    <ul>
+                        <li class=""><a href="index.html">网站首页</a></li>
+                        <li class="active"><a href="changfang.html">厂房</a></li>
+                        <li class=""><a href="cangku.html
+                                                ">仓库</a></li>
+                        <li class=""><a href="tudi.html">土地</a></li>
+                        <li class=""><a href="qiuzuqiugou.html">求租求购</a></li>
+                        <li class=""><a href="yuanqu.html">园区招商</a></li>
+                        <li class=""><a href="agent.html">经纪人</a></li>
+                        <li class=""><a href="encyclopedias.html">地产百科</a></li>
+                        <li class=""><a href="news.html">新闻资讯</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 隐藏与显示 -->
+
+
+        </div>
+
+        <div class="section">
+            <div id="example">
+                <div class="header-three">
+                    <ul>
+                        <li v-on:click="toggle()">
+                            区域
+                            <img src="./src/assets/bottomjiantou.png">
+
+                        </li>
+                        <li v-on:click="toggle1()">
+                            意向
+                            <img src="./src/assets/bottomjiantou.png">
+                        </li>
+                        <li v-on:click="toggle2()">
+                            其他
+                            <img src="./src/assets/bottomjiantou.png">
+                        </li>
+                    </ul>
+                    <div class="quyu" v-show="isShow">
+                        <a href="javascript:;" @click="findData(1,-1,-1,'')" v-on:click="toggle()">不限</a>
+                        <a href="javascript:;" @click="findData(1,-1,-1,item.name)" v-for="item in merger" v-on:click="toggle()">{{item.name}}</a>
+                    </div>
+                    <div class="leixing" v-show="isShow1">
+                        <a href="javascript:;" @click="findData(1,0,-1,'a')" v-on:click="toggle1()">不限</a>
+                        <a href="javascript:;" @click="findData(1,1,-1,'a')" v-on:click="toggle1()">求租</a>
+                        <a href="javascript:;" @click="findData(1,2,-1,'a')" v-on:click="toggle1()">求购</a>
+                    </div>
+                    <div class="other" v-show="isShow2">
+                        <div class="mianji">
+                            <H3>分类</H3>
+                            <a href="javascript:;" @click="findData(1,-1,0,'a')" v-on:click="toggle2()">不限</a>
+                            <a href="javascript:;" @click="findData(1,-1,1,'a')" v-on:click="toggle2()">厂房</a>
+                            <a href="javascript:;" @click="findData(1,-1,2,'a')" v-on:click="toggle2()">仓库</a>
+                            <a href="javascript:;" @click="findData(1,-1,3,'a')" v-on:click="toggle2()">土地</a>
+                        </div>
+                        <!-- <div class="zhuangtai">
+                        <H3>状态</H3>
+                        <button>交易中</button>
+                        <button>已成交</button>
+                    </div>
+                    <button class="queding">确定</button> -->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="liebiao" v-for="item in lb">
+                    <a v-bind:href="'qiuzuqiugou-xq.html?bpid='+item.bpid">
+                        <h3 class="zhiding">{{item.title}}
+                            <span>{{item.zd}}</span>
+                        </h3>
+                        <p>{{item.createTime}}&nbsp;&nbsp;{{item.region}}<span>{{item.areaLower}}-{{item.areaCap}}平方米</span></p>
+                    </a>
+                </div>
+                <!-- 分页 -->
+                <div class="text-f">
+                    <div class="pagination">
+                        <a v-on:click="pageClickSub()">上一页</a>
+                        <a v-on:click="pageClickAdd()">下一页</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="fuwu">
+            <ul>
+                <li><a href="javascript:;">意见反馈</a></li>
+                <li><a href="javascript:;">手机号被冒用</a></li>
+                <li><a href="javascript:;">服务条款</a></li>
+            </ul>
+            <p>库房滴滴-专注厂房、土地、仓库及园区的租售平台!</p>
+            <p>浙ICP备14017628号 公安备案：3301102013057</p>
+            <p>增值电信业务经营许可证：浙B2-20140369</p>
+        </div>
+        <div class="flex">
+            <a href="javascript:;">
+                <img src="./src/assets/logo1.png" class="simple">
+                <p>APP 速度快一倍，流量省80%</p>
+                <button onclick="download()">立即打开</button>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    var serverHost = getServerHost();
+    var ciTy;
+    if (localStorage.name == "null") {
+        ciTy = localStorage.city;
+    } else {
+        ciTy = localStorage.name;
+    }
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            lb: [],
+            pageNum: 1,
+            pageSize: 20,
+            totalPages: 1,
+            isShow: false,
+            isShow1: false,
+            isShow2: false,
+            status: 0,
+            type: 0,
+            merger: [],
+            mergerName: ciTy,
+            level: 3,
+            province: '',
+            city: localStorage.name,
+            area: ''
+        },
+
+        methods: {
+            findData: function(pageNum, status, type, region) {
+                if (status != -1) {
+                    app.status = status;
+                }
+                if (type != -1) {
+                    app.type = type;
+                }
+                if (region != 'a') {
+                    app.area = region;
+                }
+                var _this = app;
+                $.ajax({
+                    url: serverHost + '/buyingPurchase/pageBuyingPurchase',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        pageNum: _this.pageNum,
+                        pageSize: _this.pageSize,
+                        type: _this.type,
+                        status: _this.status,
+                        region: _this.province + ciTy + _this.area
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.lb = data.data.content;
+                        _this.totalPages = data.data.totalPages;
+                    },
+                    error: function() {
+
+                    }
+                });
+                $.ajax({
+                    url: serverHost + '/data/queryCityByLikeMergerName',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        mergerName: _this.mergerName,
+                        level: _this.level
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.merger = data.data;
+                    },
+                    error: function() {
+
+                    }
+                })
+            },
+            toggle: function() {
+                this.isShow = !this.isShow;
+                this.isShow1 = false;
+                this.isShow2 = false;
+            },
+            toggle1: function() {
+                this.isShow1 = !this.isShow1;
+                this.isShow = false;
+                this.isShow2 = false;
+            },
+            toggle2: function() {
+                this.isShow2 = !this.isShow2;
+                this.isShow = false;
+                this.isShow1 = false;
+            },
+            pageClickSub: function() {
+                if (app.pageNum <= 1) {
+                    Dialog.init('已经是第一页了', 1100);
+                } else {
+                    app.pageNum = app.pageNum - 1;
+                    app.findData();
+                }
+            },
+            pageClickAdd: function() {
+                if (app.pageNum >= app.totalPages) {
+                    Dialog.init('没有更多了', 1100);
+                } else {
+                    app.pageNum = app.pageNum + 1;
+                    app.findData();
+                }
+            }
+        },
+    })
+    app.findData(1, -1, -1, 'a');
+
+    function download() {
+        window.location = 'http://back.zhanchengwlkj.com/DownloadProject/download/index.html?name=kufangdidi';
+    }
+</script>
+<script>
+    function myFun(result) {
+        var cityName = result.name;
+        //map.setCenter(cityName);
+
+        if (localStorage.name == "null") {
+            app.city = cityName
+        } else {
+            app.city = localStorage.getItem("name")
+        }
+    }
+    var myCity = new BMap.LocalCity();
+    myCity.get(myFun);
+</script>
+<script type="text/javascript">
+    var myScroll = new IScroll('#wrapper', {
+        mouseWheel: true,
+        scrollX: true,
+        click: true,
+        taps: true
+            // 横向滚动导航栏
+    });
+    // 初始化
+</script>

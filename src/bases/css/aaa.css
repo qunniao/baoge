@@ -1,0 +1,518 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    padding-top: 0.9rem;
+    min-width: 320px;
+    background: white;
+    max-width: 640px;
+    font-size: 16px;
+    margin: auto;
+    font-family: "microsoft yahei", arial;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+dd {
+    margin: 0;
+}
+
+ul,
+li,
+ol,
+dl {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+img,
+input {
+    border: none;
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+.clearfix {
+    clear: both
+}
+
+.remen li {
+    border-bottom: 1px solid #e2e2e2;
+    text-align: justify;
+    font-size: 16px;
+    line-height: 44px;
+    padding: 0 15px;
+}
+
+.lastli {
+    background: #EEEEEE;
+}
+
+
+/*选择地区*/
+
+h4 {
+    padding: 0 10px;
+}
+
+.express-area {
+    width: 100%;
+    background-color: #fff;
+}
+
+.express-area a {
+    height: 50px;
+    display: block;
+    padding: 10px;
+    font-size: 17px;
+    background-size: 16px;
+}
+
+.express-area dl {
+    position: relative;
+    color: #4d525d;
+}
+
+.express-area dl dt {
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 35px;
+    font-size: 17px;
+    font-weight: normal;
+    text-align: center;
+    z-index: 100;
+    color: black;
+    font-size: 18px;
+}
+
+.express-area dl dd {
+    margin-left: 100px;
+    text-align: justify;
+    line-height: 46px
+}
+
+
+/*选择地区弹层*/
+
+.express-area-box {
+    position: absolute;
+    right: -100%;
+    left: 50%;
+    z-index: 120;
+    width: 320px;
+    margin-left: -160px;
+    background-color: #fff;
+    color: #4d525d;
+}
+
+.express-area-box .top h3 {
+    padding-left: 15px;
+    font-size: 16px;
+    background: #eeeeee;
+    line-height: 44px;
+}
+
+.lastli {
+    text-align: center;
+    font-size: 14px;
+    background: #eeeeee;
+    line-height: 40px;
+}
+
+.express-area-box article {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.area-list li {
+    padding: 0 15px;
+    border-bottom: 1px solid #e2e2e2;
+    text-align: justify;
+    line-height: 44px;
+    font-size: 18px;
+}
+
+.express-area-box {
+    position: fixed;
+    left: inherit;
+    width: 100%;
+    height: 100%;
+    right: -100%;
+    top: 0;
+    margin-left: 0;
+}
+
+
+/*遮罩层*/
+
+.mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.all {
+    width: 100%;
+}
+
+.city {
+    position: relative;
+    left: -100px;
+    z-index: 100000;
+}
+
+.lis {
+    width: 100%;
+    float: left;
+    border: 1px solid red;
+    text-align: center;
+    height: 50px;
+    line-height: 48px;
+    margin-top: 180px;
+}
+
+html {
+    font-size: 62.5%;
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.header {
+    height: 180px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.header-one {
+    height: 50px;
+    width: 100%;
+    background: red;
+    line-height: 50px;
+}
+
+.header-one h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.header-one .map {
+    width: 15%;
+    height: 50px;
+    margin-left: 125px;
+    margin-top: -50px;
+    color: #ffffff;
+}
+
+.header-one .map span {
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    float: left;
+}
+
+.header-one .map img {
+    margin-top: 12px;
+    margin-left: 3px;
+    width: 15px;
+    height: 15px;
+}
+
+#atCity {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.phone {
+    height: 50px;
+    float: right;
+    margin-top: -50px;
+    margin-left: 40px;
+}
+
+.phone h4 {
+    margin-right: 40px;
+    font-weight: normal;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.phone img {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -45px;
+    left: 115px;
+}
+
+.header-two {
+    height: 60px;
+    line-height: 60px;
+    background: #ffffff;
+    margin-top: 0;
+}
+
+.header-two ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin-left: 3px;
+    padding-right: 45px;
+}
+
+.header-two ul li a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #333333;
+}
+
+.simple {
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.flex p {
+    position: relative;
+    top: -90px;
+    left: 90px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.flex button {
+    padding: 10px 20px;
+    background: red;
+    position: absolute;
+    top: 16px;
+    font-size: 16px;
+    left: 520px;
+    border: 1px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: normal;
+}
+
+.flex {
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    margin-top: -60px;
+    background: rgba(12, 10, 10, 0.67);
+    position: fixed;
+    top: 170px;
+    z-index: 1;
+}
+
+#wrapper ul {
+    width: 185%;
+}
+
+#wrapper ul li {
+    width: 125px;
+    height: 60px;
+    background: #ffffff;
+    float: left;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+}
+
+#wrapper ul li a {
+    font-size: 18px;
+}
+
+.mycity {
+    height: 50px;
+    text-align: center;
+    font-size: 14px;
+    margin: 20px 0;
+    color: #ffffff;
+    margin-top: -271px;
+    margin-left: 30px;
+}
+
+.mycity img {
+    position: relative;
+    top: 2px;
+    left: -1px;
+}
+
+.toast {
+    position: fixed;
+    z-index: 2000;
+    left: 50%;
+    top: 45%;
+    transition: all .5s;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    border-radius: 5px;
+    color: #FFF;
+    background: rgba(17, 17, 17, 0.7);
+    height: 45px;
+    line-height: 45px;
+    padding: 0 15px;
+    max-width: 150px;
+}
+
+#expressArea dt {
+    font-size: 18px;
+}
+
+.pai {
+    width: 50%;
+    height: 50px;
+    border: 1px solid red;
+    margin-left: 50%;
+    margin-top: -50px;
+    font-size: 18px;
+}
+
+#expressArea {
+    width: 50%;
+    border: 1px solid red;
+}
+
+.yc {
+    width: 100%;
+    height: 300px;
+    background: red;
+    position: relative;
+    top: -50px;
+    z-index: 10;
+}
+
+.yc ul li {
+    list-style: none;
+    text-align: left;
+    font-size: 18px;
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px dashed #b8b7b7;
+}
+
+.lb {
+    height: 135px;
+    border-top: 1px solid #8f8e8e;
+}
+
+.lb .left {
+    float: left;
+}
+
+.lb .left img {
+    width: 130px;
+    height: 100px;
+    margin: 15px;
+}
+
+.lb .right {
+    float: left;
+    width: 72%;
+    height: 100px;
+    margin-top: 15px;
+}
+
+.lb .right h3 {
+    height: 28px;
+    line-height: 28px;
+    font-size: 18px;
+    color: black;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.lb .right h3 span {
+    padding: 0 5px;
+    font-weight: normal;
+    font-size: 16px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.lb .right h3 span:nth-child(1) {
+    border: 1px solid #41B9AB;
+    color: #41B9AB;
+}
+
+.lb .right h3 span:nth-child(2) {
+    border: 1px solid #D9A837;
+    color: #D9A837;
+}
+
+.lb .right h3 span:nth-child(3) {
+    border: 1px solid #1B99DE;
+    color: #1B99DE;
+}
+
+.lb .right p {
+    font-size: 16px;
+    color: black;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.lb .right p span {
+    color: #BABABA;
+}
+
+.area {
+    margin-top: 2px;
+}
+
+.price span {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.price {
+    color: #BABABA;
+    font-size: 16px;
+}
+
+.footer {
+    height: 30px;
+    background: #F3F3F3;
+}

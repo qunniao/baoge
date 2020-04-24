@@ -1,0 +1,538 @@
+html {
+    font-size: 62.5%;
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+    background: #eeeeee;
+    font-size: 14px;
+}
+
+.header {
+    width: 100%;
+}
+
+.header-one {
+    height: 50px;
+    width: 100%;
+    background: red;
+    line-height: 50px;
+}
+
+.header-one h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.header-one .map {
+    width: 15%;
+    height: 40px;
+    margin-left: 125px;
+    margin-top: -50px;
+    color: #ffffff;
+}
+
+.header-one .map span {
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    float: left;
+}
+
+.header-one .map img {
+    margin-top: 12px;
+    margin-left: 3px;
+    width: 15px;
+    height: 15px;
+}
+
+#atCity {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.phone {
+    float: right;
+    height: 50px;
+    margin-top: -40px;
+    margin-left: 40px;
+}
+
+.phone a {
+    color: #ffffff;
+}
+
+.phone h4 {
+    margin-right: 50px;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.phone img {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -46px;
+    left: 115px;
+}
+
+.header-two {
+    height: 60px;
+    line-height: 60px;
+    background: #ffffff;
+    margin-top: 0;
+}
+
+.header-two ul li {
+    list-style-type: none;
+    display: inline-block;
+    padding-right: 45px;
+}
+
+.header-two ul li a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 18px;
+}
+
+.lunbo {
+    background: #ffffff;
+    margin-top: -1px;
+}
+
+.lunbo .swiper-wrapper img {
+    width: 100%;
+    height: 380px;
+}
+
+.biaoti {
+    margin-top: 20px;
+}
+
+.lunbo h2 {
+    font-size: 18px;
+    margin-left: 20px;
+    padding-bottom: 10px;
+}
+
+.lunbo_price {
+    padding-bottom: 10px;
+}
+
+.lunbo_price span {
+    font-size: 18px;
+    color: red;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.lunbo_price p {
+    font-size: 16px;
+    color: #333333;
+    margin-top: 2px;
+    margin-left: 20px;
+}
+
+.lunbo_price div {
+    display: inline-block;
+    width: 209px;
+}
+
+.lunbo_price div:nth-child(2),
+.lunbo_price div:nth-child(3) {
+    border-left: 1px solid red;
+}
+
+.atapp img {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.atapp a {
+    font-size: 18px;
+    color: #333333;
+    position: relative;
+    top: -16px;
+    left: 20px;
+    text-decoration: none;
+}
+
+.jieshao {
+    width: 100%;
+    background: #ffffff;
+    margin-top: 5px;
+    padding-bottom: 15px;
+}
+
+.youdian {
+    padding-top: 25px;
+    margin-left: 20px;
+}
+
+.youdian span {
+    padding: 0 3px;
+    font-size: 16px;
+}
+
+.youdian span:nth-child(1) {
+    border: 1px solid green;
+    color: green;
+}
+
+.youdian span:nth-child(2) {
+    border: 1px solid blue;
+    color: blue;
+}
+
+.youdian span:nth-child(3) {
+    border: 1px solid red;
+    color: red;
+}
+
+.youdian span:nth-child(4) {
+    border: 1px solid green;
+    color: rgb(38, 128, 163);
+}
+
+.dsc_box {
+    padding-top: 20px;
+    margin-left: 20px;
+}
+
+.singleline {
+    overflow: hidden;
+    font-size: 16px;
+    color: #666666;
+    margin-bottom: 10px;
+}
+
+.singleline .half {
+    float: left;
+    width: 310px;
+    font-size: 16px;
+    color: #666666;
+}
+
+.singleline .half .subtitle {
+    font-size: 18px;
+}
+
+.singleline .half .info {
+    width: 220px;
+    color: black;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.mt-15 {
+    background: #ffffff;
+    margin-top: 10px;
+    padding-bottom: 15px;
+}
+
+.subtitle {
+    font-size: 18px;
+    padding-top: 20px;
+}
+
+.area-detail {
+    margin-left: 20px;
+}
+
+.area-detail p {
+    font-size: 18px;
+    margin-top: 20px;
+    padding-right: 15px;
+    word-break: break-word;
+}
+
+.area-detail .subtitle span {
+    float: right;
+    font-size: 16px;
+    color: #333333;
+    margin-top: -55px;
+}
+
+.area-detail a {
+    font-size: 16px;
+    position: relative;
+    left: 550px;
+    top: -28px;
+    color: #333333;
+}
+
+.rightjiantou {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 546px;
+    top: -23px;
+}
+
+.tuijian {
+    overflow: hidden;
+    padding: 15px 12px 15px 12px;
+    border-bottom: 1px solid #adaaaa;
+}
+
+.area-img {
+    float: left;
+    width: 145px;
+    height: 110px;
+    margin-left: -12px;
+    position: relative;
+}
+
+.area-img img {
+    float: left;
+    width: 145px;
+    height: 110px;
+    position: relative;
+}
+
+.area-content {
+    width: 78%;
+    position: relative;
+    left: -530px;
+    top: 25px;
+}
+
+.area-content h5 {
+    font-size: 18px;
+    margin: 0 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: normal;
+    color: black;
+}
+
+.area-content p {
+    font-size: 16px;
+    color: #333333;
+}
+
+.area-content p b {
+    color: #888585;
+    font-weight: normal;
+}
+
+.flag-line {
+    margin-top: 8px;
+}
+
+.flag-line .flag {
+    font-size: 14px;
+    float: left;
+    padding: 1px 3px;
+    margin-right: 10px;
+}
+
+.flag-line .flag:nth-child(1) {
+    border: 1px solid rgb(149, 221, 149);
+    color: green;
+}
+
+.flag-line .flag:nth-child(2) {
+    border: 1px solid rgb(151, 151, 175);
+    color: blue;
+}
+
+.flag-line .flag:nth-child(3) {
+    border: 1px solid rgb(236, 205, 205);
+    color: red;
+}
+
+.flag-line .flag:nth-child(4) {
+    border: 1px solid rgb(164, 207, 224);
+    color: rgb(38, 128, 163);
+}
+
+.area-content .price {
+    margin-top: 15px;
+    color: red;
+}
+
+.area-content .price span {
+    font-weight: bold;
+}
+
+.area-content .mianji {
+    font-size: 16px;
+    margin-top: -25px;
+    margin-left: 300px;
+}
+
+.area-detail .subtitlea {
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.footer {
+    margin-top: -15px;
+    width: 100%;
+}
+
+.fuwu {
+    margin-top: 25px;
+    background: #ffffff;
+    padding-bottom: 70px;
+    font-size: 12px;
+}
+
+.fuwu ul li {
+    list-style: none;
+    display: inline-block;
+    padding-right: 25px;
+}
+
+.fuwu ul {
+    position: relative;
+    top: 20px;
+    left: 10px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.fuwu ul li:nth-child(1),
+.fuwu ul li:nth-child(2) {
+    border-right: 1px solid gray;
+}
+
+.fuwu ul li:nth-child(2),
+.fuwu ul li:nth-child(3) {
+    margin-left: 25px;
+}
+
+.fuwu ul li a {
+    color: gray;
+    text-decoration: none;
+}
+
+.fuwu p {
+    text-align: center;
+    color: gray;
+    margin-bottom: 0;
+}
+
+.button {
+    width: 100%;
+    position: fixed;
+    height: 50px;
+    background: red;
+    bottom: 0;
+    font-size: 14px;
+}
+
+.button .left {
+    width: 25%;
+    height: 50px;
+    background: rgba(231, 35, 35, 0.705);
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+
+.button .right {
+    width: 75%;
+    text-align: center;
+    margin-left: 25%;
+}
+
+.button a {
+    color: #ffffff;
+    line-height: 60px;
+}
+
+#tj {
+    margin-top: -20px;
+}
+
+.flax {
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    bottom: 0;
+    border: 0;
+    color: #ffffff;
+    background: red;
+    font-size: 16px;
+    z-index: 1;
+}
+
+.flax a {
+    font-size: 22px;
+    color: #ffffff;
+}
+
+#wrapper {
+    width: 100%;
+    height: 20px;
+}
+
+.area-detail .singleline {
+    overflow: hidden;
+    font-size: 16px;
+    color: #666666;
+    margin-bottom: 10px;
+}
+
+.area-detail .singleline .half {
+    float: left;
+    width: 310px;
+    font-size: 16px;
+    color: #666666;
+}
+
+.area-detail .singleline .half .info {
+    width: 220px;
+    color: black;
+    margin-left: 20px;
+}
+
+.area-detail .dsc_box {
+    padding-top: 20px;
+    margin-left: 0;
+}
+
+.mycity {
+    color: #fff;
+}
+.tj-img{
+	width: 140px;
+	height: 100px;
+	float: left;
+}
+.tj-img img{
+	width: 100%;
+	height: 100%;
+}
+.tj-title{
+	float: left;
+	margin-left: 15px;
+}
+.tj-title h5{
+	font-size: 20px;
+}
+.tj-title p{
+	font-size: 18px;
+	margin-top: 5px;
+	color: #333333;
+}
+.price-area{
+	display: flex;
+}
+.tj-title p b {
+    color: #888585;
+    font-weight: normal;
+}
+.tj-title .price span{
+	color: red;
+}

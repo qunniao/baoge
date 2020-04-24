@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>库房滴滴</title>
+    <link rel="Shortcut Icon" href="./src/assets/logo1.png" />
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/changfang.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/weui.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/city.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/dialog.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YcOGuCXZOmSuEC3cKfDTbDlI"></script>
+    <script src="./src/bases/js/iscroll.js"></script>
+    <script src="./src/bases/js/jquery-2.1.4.js"></script>
+    <script src="./src/bases/js/fastclick.js"></script>
+    <script src="src/bases/js/jquery-weui.js"></script>
+    <script src="./src/bases/js/city.js"></script>
+    <script src="./src/bases/js/getping.js"></script>
+    <script src="./src/bases/js/bscroll.min.js"></script>
+    <script src="./src/bases/js/common.1.js"></script>
+    <script src="./src/bases/js/mDialogMin.js"></script>
+    <script src="./src/bases/js/phone.js"></script>
+    <style>
+        #wrapper ul li:nth-child(4) a {
+            color: red;
+        }
+        
+        .area-content {
+            float: left;
+            margin-left: 150px;
+            margin-top: -140px;
+            height: 160px;
+        }
+    </style>
+    <script>
+        ! function(designWidth) {
+            if (/Android(?:\s+|\/)(\d+\.\d+)?/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / designWidth;
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',minimum-scale=' + phoneScale + ',maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=' + designWidth + ',user-scalable=no,target-densitydpi=device-dpi,minimal-ui,viewport-fit=cover">');
+            }
+        }(640);
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="header-one">
+                <a href="index.html">
+                    <h2>库房滴滴</h2>
+                </a>
+                <div id="map" style="width:150px;font-size: 14px;color: #292929;font-family: '微软雅黑'">
+                    <a href="allcity.html">
+                        <div class="mycity" @click="selectLocation()">
+                            {{city}}
+                            <img src="./src/assets/xiajiantou.png" style="width:10px;height:10px">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="header-two">
+                <div id="wrapper">
+                    <ul>
+                        <li class=""><a href="index.html">网站首页</a></li>
+                        <li class="active"><a href="changfang.html">厂房</a></li>
+                        <li class=""><a href="cangku.html">仓库</a></li>
+                        <li class=""><a href="tudi.html">土地</a></li>
+                        <li class=""><a href="qiuzuqiugou.html">求租求购</a></li>
+                        <li class=""><a href="yuanqu.html">园区招商</a></li>
+                        <li class=""><a href="agent.html">经纪人</a></li>
+                        <li class=""><a href="encyclopedias.html">地产百科</a></li>
+                        <li class=""><a href="news.html">新闻资讯</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div id="example">
+                <div class="header-three">
+                    <ul>
+                        <li v-on:click="toggle()">
+                            区域
+                            <img src="./src/assets/bottomjiantou.png">
+
+                        </li>
+                        <li v-on:click="toggle1()">
+                            类型
+                            <img src="./src/assets/bottomjiantou.png">
+                        </li>
+                        <li v-on:click="toggle2()">
+                            其他
+                            <img src="./src/assets/bottomjiantou.png">
+                        </li>
+                    </ul>
+                    <div class="quyu" v-show="isShow">
+                        <a href="javascript:;" @click="findData(1,-1,-1,-1,'')" v-on:click="toggle()">不限</a>
+                        <a href="javascript:;" @click="findData(1,-1,-1,-1,item.name)" v-on:click="toggle()" v-for="item in merger">{{item.name}}</a>
+                    </div>
+                    <div class="leixing" v-show="isShow1">
+                        <a href="javascript:;" @click="findData(1,0,-1,-1,'a')" v-on:click="toggle1()">不限</a>
+                        <a href="javascript:;" @click="findData(1,1,-1,-1,'a')" v-on:click="toggle1()">出租</a>
+                        <a href="javascript:;" @click="findData(1,2,-1,-1,'a')" v-on:click="toggle1()">出售</a>
+                    </div>
+                    <div class="other" v-show="isShow2" style="height:390px">
+                        <div class="mianji">
+                            <H3>面积</H3>
+                            <a href="javascript:;" @click="findData(1,-1,0,1000000,'a')" v-on:click="toggle2()">不限</a>
+                            <a href="javascript:;" @click="findData(1,-1,0,500,'a')" v-on:click="toggle2()">500平方以下</a>
+                            <a href="javascript:;" @click="findData(1,-1,500,1000,'a')" v-on:click="toggle2()">500-1000平方</a>
+                            <a href="javascript:;" @click="findData(1,-1,1000,1500,'a')" v-on:click="toggle2()">1000-1500平方</a>
+                            <a href="javascript:;" @click="findData(1,-1,1500,2500,'a')" v-on:click="toggle2()">1500-2500平方</a>
+                            <a href="javascript:;" @click="findData(1,-1,2500,4000,'a')" v-on:click="toggle2()">2500-4000平方</a>
+                            <a href="javascript:;" @click="findData(1,-1,4000,6000,'a')" v-on:click="toggle2()">4000-6000平方</a>
+                            <a href="javascript:;" @click="findData(1,-1,6000,10000,'a')" v-on:click="toggle2()">6000-10000平方</a>
+                            <a href="javascript:;" @click="findData(1,-1,10000,1000000,'a')" v-on:click="toggle2()">10000平方以上</a>
+                        </div>
+                        <!-- <div class="zhuangtai">
+                        <H3>状态</H3>
+                        <button>交易中</button>
+                        <button>已成交</button>
+                    </div>
+                    <button class="queding">确定</button> -->
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a href="tudi-xq.html">
+                    <div class="liebiao2" v-for="item in lbiao">
+                        <a v-bind:href="'tudi-xq.html?productId='+item.productId">
+                            <div class="area-img">
+                                <img :src="item.titlePicture">
+                            </div>
+                            <div class="area-content">
+                                <h5>{{item.title}}</h5>
+                                <p>{{item.createTime}}&nbsp;&nbsp;&nbsp;{{item.contact}}<span>{{item.qiu}}</span></p>
+                                <div class="flag-line">
+                                    <span class="flag" v-for="item in item.lbiao">{{item.leixing}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </a>
+                <!-- 分页 -->
+                <div class="text-f">
+                    <div class="pagination">
+                        <a v-on:click="pageClickSub()">上一页</a>
+                        <a v-on:click="pageClickAdd()">下一页</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="fuwu">
+            <ul>
+                <li><a href="javascript:;">意见反馈</a></li>
+                <li><a href="javascript:;">手机号被冒用</a></li>
+                <li><a href="javascript:;">服务条款</a></li>
+            </ul>
+            <p>库房滴滴-专注厂房、土地、仓库及园区的租售平台!</p>
+            <p>浙ICP备14017628号 公安备案：3301102013057</p>
+            <p>增值电信业务经营许可证：浙B2-20140369</p>
+        </div>
+        <div class="flex">
+            <a href="javascript:;">
+                <img src="./src/assets/logo1.png" class="simple">
+                <p>APP 速度快一倍，流量省80%</p>
+                <button onclick="download()">立即打开</button>
+            </a>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    var serverHost = getServerHost();
+    var ciTy;
+    if (localStorage.name == "null") {
+        ciTy = localStorage.city;
+    } else {
+        ciTy = localStorage.name;
+    }
+
+    var paa = new Vue({
+        el: '#app',
+        data: {
+            lbiao: [],
+            pageNum: 1,
+            pageSize: 20,
+            totalPages: 1,
+            types: 3,
+            isShow: false,
+            isShow1: false,
+            isShow2: false,
+            status: 0,
+            upArea: 0,
+            downArea: 1000000,
+            merger: [],
+            mergerName: ciTy,
+            level: 3,
+            province: '',
+            city: localStorage.name,
+            area: ''
+        },
+
+        methods: {
+            findData: function(pageNum, status, upArea, downArea, region) {
+                if (status != -1) {
+                    paa.status = status;
+                }
+                if (upArea != -1) {
+                    paa.upArea = upArea;
+                }
+                if (downArea != -1) {
+                    paa.downArea = downArea;
+                }
+                if (region != 'a') {
+                    paa.area = region;
+                }
+                var _this = paa;
+                $.ajax({
+                    url: serverHost + '/fplHouse/pageFplHouse',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        pageNum: _this.pageNum,
+                        pageSize: _this.pageSize,
+                        types: _this.types,
+                        status: _this.status,
+                        upArea: _this.upArea,
+                        downArea: _this.downArea,
+                        region: _this.province + ciTy + _this.area
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.lbiao = data.data.content;
+                        _this.totalPages = data.data.totalPages;
+                    },
+                    error: function() {
+
+                    }
+                });
+                $.ajax({
+                    url: serverHost + '/data/queryCityByLikeMergerName',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        mergerName: _this.mergerName,
+                        level: _this.level
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.merger = data.data;
+                    }
+                })
+            },
+            toggle: function() {
+                this.isShow = !this.isShow;
+                this.isShow1 = false;
+                this.isShow2 = false;
+            },
+            toggle1: function() {
+                this.isShow1 = !this.isShow1;
+                this.isShow = false;
+                this.isShow2 = false;
+            },
+            toggle2: function() {
+                this.isShow2 = !this.isShow2;
+                this.isShow = false;
+                this.isShow1 = false;
+            },
+            pageClickSub: function() {
+                if (paa.pageNum <= 1) {
+                    Dialog.init('已经是第一页了', 1100);
+                } else {
+                    paa.pageNum = paa.pageNum - 1;
+                    paa.findData();
+                }
+            },
+            pageClickAdd: function() {
+                if (paa.pageNum >= paa.totalPages) {
+                    Dialog.init('没有更多了', 1100);
+                } else {
+                    paa.pageNum = paa.pageNum + 1;
+                    this.findData();
+                }
+            }
+
+        },
+    })
+    paa.findData(1, -1, -1, -1, 'a');
+
+    function download() {
+        window.location = 'http://back.zhanchengwlkj.com/DownloadProject/download/index.html?name=kufangdidi';
+    }
+</script>
+
+<script type="text/javascript">
+    var myScroll = new IScroll('#wrapper', {
+        mouseWheel: true,
+        scrollX: true,
+        click: true,
+        taps: true
+            // 横向滚动导航栏
+    });
+    // 初始化
+</script>
+<script>
+    function myFun(result) {
+        var cityName = result.name;
+        //map.setCenter(cityName);
+
+        if (localStorage.name == "null") {
+            paa.city = cityName
+        } else {
+            paa.city = localStorage.getItem("name")
+        }
+    }
+    var myCity = new BMap.LocalCity();
+    myCity.get(myFun);
+</script>

@@ -1,0 +1,340 @@
+html {
+    font-size: 62.5%;
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.header-one {
+    height: 50px;
+    width: 100%;
+    background: red;
+    line-height: 50px;
+}
+
+.header-one h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.header-one .map {
+    width: 15%;
+    height: 50px;
+    margin-left: 125px;
+    margin-top: -50px;
+    color: #ffffff;
+}
+
+.header-one .map span {
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    float: left;
+}
+
+.header-one .map img {
+    position: relative;
+    top: 0;
+    left: 4px;
+    width: 15px;
+    height: 15px;
+}
+
+#atCity {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.phone {
+    height: 50px;
+    float: right;
+    margin-top: -53px;
+    margin-left: 40px;
+}
+
+.phone h4 {
+    margin-right: 40px;
+    font-weight: normal;
+    color: #ffffff;
+    font-size: 16px;
+    margin-top: 3px;
+}
+
+.phone img {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -47px;
+    left: 115px;
+}
+
+.header-two {
+    height: 60px;
+    line-height: 60px;
+    background: #ffffff;
+    margin-top: 0;
+}
+
+.header-two ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin-left: 3px;
+    padding-right: 45px;
+}
+
+.header-two ul li a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #333333;
+}
+
+.section {
+    margin-top: 182px;
+}
+
+.simple {
+    width: 50px;
+    height: 50px;
+    background: rgba(73, 73, 73, 0.5);
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.flex p {
+    position: relative;
+    top: -85px;
+    left: 90px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.flex button {
+    padding: 7px 15px;
+    background: red;
+    position: absolute;
+    top: 16px;
+    left: 530px;
+    border: 1px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.flex {
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    margin-top: -38px;
+    background: rgba(12, 10, 10, 0.67);
+    position: fixed;
+    top: 150px;
+    z-index: 1;
+}
+
+.title {
+    background: #ffffff;
+    margin-top: 150px;
+    padding: 10px 0 10px 20px;
+}
+
+.title h3 {
+    font-size: 18px;
+}
+
+.title h3 span {
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 20px;
+    padding: 2px 10px;
+    background: red;
+    color: #ffffff;
+    border-radius: 3px;
+}
+
+.title p {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.title p span {
+    float: right;
+    margin-right: 20px;
+}
+
+.all {
+    margin-top: 10px;
+    background: #ffffff;
+    padding-bottom: 10px;
+}
+
+.all h3 {
+    font-size: 18px;
+}
+
+.subtitlea {
+    height: 40px;
+    border-bottom: 2px solid #eeeeee;
+}
+
+.subtitlea img {
+    margin: 13px 0 0 20px;
+}
+
+.subtitlea h3 {
+    margin: -28px 0 0 40px;
+}
+
+.dsc_box {
+    padding-top: 20px;
+    margin-left: 20px;
+}
+
+.singleline {
+    overflow: hidden;
+    font-size: 12px;
+    color: #666666;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.singleline .half {
+    float: left;
+    font-size: 12px;
+    color: #666666;
+}
+
+.singleline .half .subtitle {
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.singleline .half .info {
+    width: 220px;
+    color: black;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+.singleline .half .infoq {
+    width: 220px;
+    color: black;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+.jieshao {
+    margin-left: 20px;
+}
+
+.fuwu {
+    margin-top: -1px;
+    background: #ffffff;
+    padding-bottom: 70px;
+    font-size: 12px;
+}
+
+.fuwu ul li {
+    list-style: none;
+    display: inline-block;
+    padding-right: 25px;
+}
+
+.fuwu ul {
+    position: relative;
+    top: 20px;
+    left: 10px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.fuwu ul li:nth-child(1),
+.fuwu ul li:nth-child(2) {
+    border-right: 1px solid black;
+}
+
+.fuwu ul li:nth-child(2),
+.fuwu ul li:nth-child(3) {
+    margin-left: 25px;
+}
+
+.fuwu ul li a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.fuwu p {
+    text-align: center;
+    color: gray;
+    margin-bottom: 0;
+}
+
+.button {
+    width: 100%;
+    position: fixed;
+    height: 70px;
+    line-height: 70px;
+    background: red;
+    bottom: 0;
+    font-size: 18px;
+}
+
+.button .left {
+    width: 25%;
+    height: 70px;
+    line-height: 70px;
+    background: rgba(231, 35, 35, 0.705);
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+
+.button .right {
+    width: 75%;
+    text-align: center;
+    margin-left: 25%;
+}
+
+.button a {
+    color: #ffffff;
+    line-height: 60px;
+    font-size: 18px;
+}
+
+#wrapper ul {
+    width: 209%;
+}
+
+#wrapper ul li {
+    width: 100px;
+    height: 50px;
+    background: #ffffff;
+    float: left;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+#wrapper ul li a {
+    font-size: 18px;
+}
+
+#area {
+    margin-left: 100px;
+}
+
+.mycity {
+    font-size: 14px;
+    color: #fff;
+}

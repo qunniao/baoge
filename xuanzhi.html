@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="Shortcut Icon" href="./src/assets/logo1.png" />
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/xuanzhi.css">
+    <script src="./src/bases/js/phone.js"></script>
+    <title>库房滴滴</title>
+    <script>
+        ! function(designWidth) {
+            if (/Android(?:\s+|\/)(\d+\.\d+)?/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / designWidth;
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',minimum-scale=' + phoneScale + ',maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=' + designWidth + ',user-scalable=no,target-densitydpi=device-dpi,minimal-ui,viewport-fit=cover">');
+            }
+        }(640);
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <h3>帮我选址</h3>
+        <a href="index.html">
+            <img src="./src/assets/goleft (2).png">
+        </a>
+    </div>
+    <section>
+        <div class="simple">
+            <h3>您想选择的类别？</h3>
+            <ul>
+                <li><a href="">厂房</a></li>
+                <li><a href="">仓库</a></li>
+                <li><a href="">土地</a></li>
+            </ul>
+        </div>
+        <div class="simple">
+            <h3>您想选择的意向？</h3>
+            <ul>
+                <li><a href="">出租</a></li>
+                <li><a href="">出售</a></li>
+                <li><a href="">求租</a></li>
+                <li><a href="">求购</a></li>
+            </ul>
+        </div>
+        <div class="simple">
+            <h3>您的联系方式？</h3>
+            <input type="text" placeholder="姓名">
+            <input type="text" placeholder="手机号">
+        </div>
+        <div class="simple">
+            <h3>您的备注？</h3>
+            <textarea placeholder="请输入您的特殊要求～"></textarea>
+        </div>
+        <input type="submit" value="提交" id="submit">
+    </section>
+</body>
+
+</html>

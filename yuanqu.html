@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>库房滴滴</title>
+    <link rel="Shortcut Icon" href="./src/assets/logo1.png" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YcOGuCXZOmSuEC3cKfDTbDlI"></script>
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/city.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/yuanqu.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/weui.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/dialog.css">
+    <script src="./src/bases/js/iscroll.js"></script>
+    <script src="./src/bases/js/jquery-2.1.4.js"></script>
+    <script src="./src/bases/js/fastclick.js"></script>
+    <script src="src/bases/js/jquery-weui.js"></script>
+    <script src="./src/bases/js/city.js"></script>
+    <script src="./src/bases/js/getping.js"></script>
+    <script src="./src/bases/js/bscroll.min.js"></script>
+    <script src="./src/bases/js/jquery-1.11.3.min.js"></script>
+    <script src="./src/bases/js/Popt.js"></script>
+    <script src="./src/bases/js/cityJson.js"></script>
+    <script src="./src/bases/js/citySet.js"></script>
+    <script src="./src/bases/js/common.js"></script>
+    <script src="./src/bases/js/common.1.js"></script>
+    <script src="./src/bases/js/mDialogMin.js"></script>
+    <script src="./src/bases/js/phone.js"></script>
+    <script>
+        ! function(designWidth) {
+            if (/Android(?:\s+|\/)(\d+\.\d+)?/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / designWidth;
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',minimum-scale=' + phoneScale + ',maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=' + designWidth + ',user-scalable=no,target-densitydpi=device-dpi,minimal-ui,viewport-fit=cover">');
+            }
+        }(640);
+    </script>
+
+    <style>
+        #wrapper ul li:nth-child(6) a {
+            color: red;
+        }
+        
+        .city {
+            margin-left: -100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="header-one">
+                <a href="index.html">
+                    <h2>库房滴滴</h2>
+                </a>
+                <div id="map" style="width:150px;font-size: 14px;margin-top:211px;margin-left:100px;height:50px;color: #292929;font-family: '微软雅黑'">
+                    <a href="allcity.html">
+                        <div class="mycity" @click="selectLocation()">
+                            {{city}}
+                            <img src="./src/assets/xiajiantou.png" style="width:10px;height:10px">
+                        </div>
+                    </a>
+                </div>
+                <div class="phone">
+                    <a href="tel:400-0571-233">
+                        <h4>400-0571-233</h4>
+                    </a>
+                    <img src="./src/assets/phone.png">
+                </div>
+            </div>
+            <div class="header-two">
+                <div id="wrapper">
+                    <ul>
+                        <li class=""><a href="index.html">网站首页</a></li>
+                        <li class="active"><a href="changfang.html">厂房</a></li>
+                        <li class=""><a href="cangku.html">仓库</a></li>
+                        <li class=""><a href="tudi.html">土地</a></li>
+                        <li class=""><a href="qiuzuqiugou.html">求租求购</a></li>
+                        <li class=""><a href="yuanqu.html">园区招商</a></li>
+                        <li class=""><a href="agent.html">经纪人</a></li>
+                        <li class=""><a href="encyclopedias.html">地产百科</a></li>
+                        <li class=""><a href="news.html">新闻资讯</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="javascript:;">
+                <div class="flex">
+                    <img src="./src/assets/logo1.png" class="simple">
+                    <p>APP 速度快一倍，流量省80%</p>
+                    <button onclick="download()">立即下载</button>
+                </div>
+            </a>
+        </div>
+        <div data-role="page" id="test">
+            <div class="ui-content" v-on:click="toggle()">
+                区域
+            </div>
+            <div class="quyu" v-show="isShow">
+                <a href="javascript:;" @click="findData(1,'')" v-on:click="toggle()">不限</a>
+                <a href="javascript:;" @click=findData(1,item.name) v-for="item in merger" v-on:click="toggle()">{{item.name}}</a>
+            </div>
+        </div>
+        <!-- section -->
+        <div class="section">
+            <div class="lb" v-for="item in lbiao">
+                <a v-bind:href="'yuanqu-xq.html?pid='+item.pid">
+                    <div class="left">
+                        <img :src="item.titlePicture">
+                    </div>
+                    <div class="right">
+                        <h3>{{item.title}}
+                            <span v-for="item in item.lb">{{item.nice}}</span>
+                        </h3>
+                        <p class="area">建筑面积:&nbsp;&nbsp;<span>{{item.priceArea}}平方米</span></p>
+                        <p>园区地址:&nbsp;&nbsp;<span>{{item.parkAddress}} </span></p>
+                        <p class="price" style="color:#BABABA;"><span style="color:red">{{item.price}}</span>&nbsp;&nbsp;&nbsp;&nbsp;{{item.totalprice}}</p>
+                    </div>
+                </a>
+            </div>
+            <!-- 分页 -->
+            <div class="text-f" style="margin-top:210px;">
+                <div class="pagination">
+                    <a v-on:click="pageClickSub()">上一页</a>
+                    <a v-on:click="pageClickAdd()">下一页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+
+    </div>
+</body>
+
+</html>
+<script>
+    var serverHost = getServerHost();
+    var ciTy;
+    if (localStorage.name == "null") {
+        ciTy = localStorage.city;
+    } else {
+        ciTy = localStorage.name;
+    }
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            lbiao: [],
+            pageNum: 1,
+            pageSize: 20,
+            totalPages: 1,
+            show: false,
+            isShow: false,
+            province: "",
+            city: localStorage.getItem("name"),
+            area: "",
+            merger: [],
+            mergerName: ciTy,
+            level: 3
+        },
+
+        methods: {
+            findData: function(pageNum, park) {
+                var _this = app;
+                app.area = park;
+                var parkAddress = _this.province + "-" + _this.city + "-" + _this.area;
+                $.ajax({
+                    url: serverHost + '/parkStore/pageParkStore',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        pageNum: _this.pageNum,
+                        pageSize: _this.pageSize,
+                        parkAddress: parkAddress
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.lbiao = data.data.content;
+                        _this.totalPages = data.data.totalPages;
+                    },
+                    error: function() {
+
+                    }
+                })
+                $.ajax({
+                    url: serverHost + '/data/queryCityByLikeMergerName',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        mergerName: _this.mergerName,
+                        level: _this.level
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.merger = data.data;
+                    }
+                })
+            },
+            toggle: function() {
+                this.isShow = !this.isShow;
+            },
+            pageClickSub: function() {
+                if (app.pageNum <= 1) {
+                    Dialog.init('已经是第一页了', 1100);
+                } else {
+                    app.pageNum = app.pageNum - 1;
+                    app.findData();
+                }
+            },
+            pageClickAdd: function() {
+                if (app.pageNum >= app.totalPages) {
+                    Dialog.init('没有更多了', 1100);
+                } else {
+                    app.pageNum = app.pageNum + 1;
+                    app.findData();
+                }
+            }
+        },
+    })
+
+    function replaceDoc() {
+        window.location.replace("yuanqu.html")
+    }
+    $("#city").click(function(e) {
+        SelCity(this, e);
+        console.log(this);
+    });
+    app.findData(1, '');
+
+    function download() {
+        window.location = 'http://back.zhanchengwlkj.com/DownloadProject/download/index.html?name=kufangdidi';
+    }
+</script>
+<script>
+    function myFun(result) {
+        var cityName = result.name;
+        //map.setCenter(cityName);
+
+        if (localStorage.name == "null") {
+            app.city = cityName
+        } else {
+            app.city = localStorage.getItem("name")
+        }
+    }
+    var myCity = new BMap.LocalCity();
+    myCity.get(myFun);
+</script>
+<script type="text/javascript">
+    var myScroll = new IScroll('#wrapper', {
+        mouseWheel: true,
+        scrollX: true,
+        click: true,
+        taps: true
+            // 横向滚动导航栏
+    });
+    // 初始化
+</script>

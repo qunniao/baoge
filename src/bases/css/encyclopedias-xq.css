@@ -1,0 +1,301 @@
+html {
+    font-size: 62.5%;
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.header-one {
+    height: 50px;
+    width: 100%;
+    background: red;
+    line-height: 50px;
+}
+
+.header-one h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.header-one .map {
+    width: 15%;
+    height: 50px;
+    margin-left: 125px;
+    margin-top: -50px;
+    color: #ffffff;
+}
+
+.header-one .map span {
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    float: left;
+}
+
+.header-one .map img {
+    margin-top: 12px;
+    margin-left: 3px;
+    width: 15px;
+    height: 15px;
+}
+
+#atCity {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.phone {
+    height: 50px;
+    float: right;
+    margin-top: -100px;
+    margin-left: 40px;
+}
+
+.phone a {
+    margin-right: 15px;
+    font-weight: normal;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.phone img {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 5px;
+    left: -15px;
+}
+
+.header-two {
+    height: 60px;
+    line-height: 60px;
+    background: #ffffff;
+    margin-top: 0;
+}
+
+.header-two ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin-left: 3px;
+    padding-right: 45px;
+}
+
+.header-two ul li a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #333333;
+}
+
+#wrapper ul {
+    width: 210%;
+}
+
+#wrapper ul li {
+    width: 100px;
+    height: 60px;
+    background: #ffffff;
+    float: left;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+}
+
+#wrapper ul li a {
+    font-size: 18px;
+}
+
+.mycity {
+    position: relative;
+    top: -49px;
+    left: 130px;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.section {
+    margin-top: 125px;
+}
+
+.section .title {
+    margin: 15px;
+}
+
+.section .title h3 {
+    font-size: 20px;
+}
+
+.section .title p {
+    font-size: 16px;
+    color: #aca9a9;
+    margin-top: 10px;
+}
+
+.section .title .browse {
+    float: right;
+}
+
+.section .title .person-time {
+    position: relative;
+    top: 30px;
+    z-index: -100;
+}
+
+.section .title .person-time span {
+    float: right;
+    margin-right: -50px;
+}
+
+.section .huida {
+    position: relative;
+    top: 40px;
+    z-index: -100;
+}
+
+.section .huida b {
+    margin-left: 15px;
+    font-size: 16px;
+}
+
+.section .wlhd {
+    margin-top: 80px;
+    margin-left: 15px;
+    font-size: 16px;
+}
+
+.wlhd h3 {
+    color: red;
+}
+
+.wlhd img {
+    position: relative;
+    top: 5px;
+}
+
+.section .wlhd textarea {
+    width: 98%;
+    height: 100px;
+    border: 1px solid #b1afaf;
+    margin-top: 10px;
+    font-size: 16px;
+    padding-left: 5px;
+}
+
+.section .wlhd input {
+    padding: 5px 7px;
+    background: red;
+    border-radius: 3px;
+    color: #ffffff;
+    margin-left: 540px;
+    margin-top: 10px;
+}
+
+.fuwu {
+    margin-top: 25px;
+    background: #ffffff;
+    padding-bottom: 70px;
+}
+
+.fuwu ul li {
+    list-style: none;
+    display: inline-block;
+    padding-right: 25px;
+}
+
+.fuwu ul {
+    margin-left: 180px;
+    padding-bottom: 20px;
+    padding-top: 5px;
+}
+
+.fuwu ul li:nth-child(1),
+.fuwu ul li:nth-child(2) {
+    border-right: 1px solid gray;
+}
+
+.fuwu ul li:nth-child(2),
+.fuwu ul li:nth-child(3) {
+    margin-left: 25px;
+}
+
+.fuwu ul li a {
+    color: gray;
+    font-size: 12px;
+}
+
+.fuwu p {
+    text-align: center;
+    font-size: 12px;
+    color: gray;
+    margin-top: 5px;
+}
+
+.simple {
+    width: 50px;
+    height: 50px;
+    background: rgba(63, 63, 63, 0.5);
+    margin-left: 20px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.flex p {
+    position: relative;
+    top: -85px;
+    left: 90px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.flex button {
+    padding: 7px 20px;
+    background: red;
+    position: absolute;
+    font-size: 18px;
+    top: 13px;
+    left: 520px;
+    border: 1px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: normal;
+}
+
+.flex {
+    width: 100%;
+    height: 60px;
+    line-height: 70px;
+    margin-top: -70px;
+    background: rgba(12, 10, 10, 0.67);
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+}
+
+.answer {
+    width: 97%;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.answer-person {
+    width: 97%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px dashed #999999;
+    margin-top: 15px;
+    font-size: 18px;
+    color: #999999;
+}
+
+.answer-person span {
+    margin-right: 100px;
+}

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>库房滴滴</title>
+    <link rel="Shortcut Icon" href="./src/assets/logo1.png" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YcOGuCXZOmSuEC3cKfDTbDlI"></script>
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/city.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/agent-xq.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/weui.css">
+    <script src="./src/bases/js/jquery-2.1.4.js"></script>
+    <script src="src/bases/js/tab.js"></script>
+    <script src="src/bases/js/jquery-weui.js"></script>
+    <script src="./src/bases/js/city.js"></script>
+    <script src="./src/bases/js/getping.js"></script>
+    <script src="./src/bases/js/bscroll.min.js"></script>
+    <script src="./src/bases/js/common.1.js"></script>
+    <script>
+        ! function(designWidth) {
+            if (/Android(?:\s+|\/)(\d+\.\d+)?/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / designWidth;
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',minimum-scale=' + phoneScale + ',maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=' + designWidth + ',user-scalable=no,target-densitydpi=device-dpi,minimal-ui,viewport-fit=cover">');
+            }
+        }(640);
+    </script>
+    <style>
+        #wrapper ul li:nth-child(6) a {
+            color: red;
+        }
+        
+        .city {
+            margin-left: -100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="appa">
+        <div class="header">
+            <div class="header-one">
+                <a href="index.html">
+                    <h2>库房滴滴</h2>
+                </a>
+                <div style="width:100px;font-size: 14px;margin-top:221px;margin-left:100px;height:50px;color: #292929;font-family: '微软雅黑'">
+                    <a href="allcity.html">
+                        <div class="mycity" @click="selectLocation()">
+                            {{city}}
+                            <img src="./src/assets/xiajiantou.png" style="width:10px;height:10px">
+                        </div>
+                    </a>
+                </div>
+                <div class="phone">
+                    <a href="tel:400-0571-233">
+                        <h4>400-0571-233</h4>
+                    </a>
+                    <img src="./src/assets/phone.png">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section">
+            <div class="person">
+                <div class="goleft">
+                    <a href="agent.html">
+                        <img src="./src/assets/goleft (1).png">
+                    </a>
+                </div>
+                <div class="portrait">
+                    <img :src="avatarUrl">
+                    <h3>{{userName}}</h3>
+                </div>
+            </div>
+            <div class="bottom-name">
+                <div class="footer-left">
+                    <img :src="avatarUrl">
+                    <h3>{{userName}}</h3>
+                </div>
+                <div class="footer-right">
+                    <a v-bind:href="'tel:'+userPhone">
+                        <img src="./src/assets/dianhua .png">
+                        <h3>电话咨询</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="jieshao">
+                <div class="juti">
+                    <p>{{popularValue}}</p>
+                    <span>人气</span>
+                </div>
+                <div class="juti">
+                    <p>{{fplHouse}}</p>
+                    <span>房源</span>
+                </div>
+                <div class="juti">
+                    <p>5.0</p>
+                    <span>综合</span>
+                </div>
+            </div>
+            <div class="zhuying">
+                <h3>主营区域:&nbsp;&nbsp;{{mainArea}}</h3>
+
+            </div>
+        </div>
+        <div class="weui-tab" id="liebiao">
+            <div class="weui-navbar">
+                <!-- <a class="weui-navbar__item weui-bar__item_on" href="#tab1">
+            评价
+        </a> -->
+                <a class="weui-navbar__item weui-bar__item_on" href="#tab2">
+            厂房
+        </a>
+                <a class="weui-navbar__item" href="#tab3">
+            仓库
+        </a>
+                <a class="weui-navbar__item" href="#tab4">
+            土地
+        </a>
+            </div>
+            <div class="weui-tab__panel">
+                <!-- <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active">
+                    <div class="tu-content" id="diyige">
+                        <p>用户评价
+                            <span><a href="">登陆后评价</a></span>
+                        </p>
+                    </div>
+                </div> -->
+                <div id="tab2" class="weui_tab_bd_item weui_tab_bd_item_active">
+                    <div class="tu-content" v-for="item in changfang">
+                        <a v-bind:href="'changfang-xq.html?productId='+item.productId">
+                            <div class="left">
+                                <img :src="item.titlePicture">
+                            </div>
+                            <div class="right">
+                                <h3>{{item.title}}</h3>
+                                <p>可用面积:{{item.area}}平方</p>
+                                <p>地址:{{item.region}}</p>
+                                <p class="price">{{item.rent}}{{item.rentUnit}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div id="tab3" class="weui_tab_bd_item">
+                    <div class="tu-content" v-for="item in cangku">
+                        <a v-bind:href="'cangku-xq.html?productId='+item.productId">
+                            <div class="left">
+                                <img :src="item.titlePicture">
+                            </div>
+                            <div class="right">
+                                <h3>{{item.title}}</h3>
+                                <p>可用面积:{{item.area}}平方</p>
+                                <p>地址:{{item.region}}</p>
+                                <p class="price">{{item.rent}}{{item.rentUnit}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div id="tab4" class="weui_tab_bd_item">
+                    <div class="tu-content" v-for="item in tudi">
+                        <a v-bind:href="'tudi-xq.html?productId='+item.productId">
+                            <div class="left">
+                                <img :src="item.titlePicture">
+                            </div>
+                            <div class="right">
+                                <h3>{{item.title}}</h3>
+                                <p>可用面积:{{item.area}}平方</p>
+                                <p>地址:{{item.region}}</p>
+                                <p class="price">{{item.rent}}{{item.rentUnit}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function myFun(result) {
+        var cityName = result.name;
+        //map.setCenter(cityName);
+
+        if (localStorage.name == "null") {
+            app.city = cityName
+        } else {
+            app.city = localStorage.getItem("name")
+        }
+    }
+    var myCity = new BMap.LocalCity();
+    myCity.get(myFun);
+</script>
+<script>
+    var serverHost = getServerHost();
+
+    //获取url中的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+
+    //接收URL中的参数booksId
+    var uid = getUrlParam('uid');
+    var fplHouse = getUrlParam('fplHouse');
+    var popularValue = getUrlParam('popularValue');
+    console.log('uid:' + uid);
+    var app = new Vue({
+        el: '#appa',
+        data: {
+            userName: '',
+            avatarUrl: '',
+            userPhone: '',
+            popularValue: '',
+            fplHouse: '',
+            mainArea: '',
+            changfang: [],
+            cangku: [],
+            tudi: [],
+            city: ''
+        },
+        methods: {
+
+            findData: function() {
+                var _this = app;
+                $.ajax({
+                    url: serverHost + '/personal/queryUserByUid',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        uid: uid,
+                    },
+                    success: function(data) {
+                        _this.userName = data.data.userName;
+                        _this.avatarUrl = data.data.avatarUrl;
+                        _this.userPhone = data.data.userPhone;
+                        _this.mainArea = data.data.mainArea;
+                        _this.popularValue = popularValue;
+                        _this.fplHouse = fplHouse;
+                    },
+                    error: function() {
+
+                    }
+                });
+
+                $.ajax({
+                    url: serverHost + '/fplHouse/queryFplHouseByUidAndTypes',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        uid: uid,
+                        types: 1,
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.changfang = data.data;
+                    },
+                    error: function() {
+
+                    }
+                });
+
+                $.ajax({
+                    url: serverHost + '/fplHouse/queryFplHouseByUidAndTypes',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        uid: uid,
+                        types: 2,
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.cangku = data.data;
+                    },
+                    error: function() {
+
+                    }
+                });
+
+                $.ajax({
+                    url: serverHost + '/fplHouse/queryFplHouseByUidAndTypes',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        uid: uid,
+                        types: 3,
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.tudi = data.data;
+                    },
+                    error: function() {
+
+                    }
+                })
+            },
+        },
+    })
+    app.findData();
+</script>
+<script>
+    $(function() {
+        $('.weui-navbar__item').on('click', function() {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+
+            //内容切换
+            $(".weui-tab__panel .weui_tab_bd_item_active").removeClass('weui_tab_bd_item_active');
+            var data_toggle = jQuery(this).attr("href");
+            $(data_toggle).addClass("weui_tab_bd_item_active");
+        });
+    });
+</script>
+<script type="text/javascript">
+    var myScroll = new IScroll('#wrapper', {
+        mouseWheel: true,
+        scrollX: true,
+        click: true,
+        taps: true
+            // 横向滚动导航栏
+    });
+    // 初始化
+</script>

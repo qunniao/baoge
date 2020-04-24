@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>库房滴滴</title>
+    <link rel="Shortcut Icon" href="./src/assets/logo1.png" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YcOGuCXZOmSuEC3cKfDTbDlI"></script>
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/city.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/yuanqu-xq.css">
+    <link rel="stylesheet" href="./src/bases/css/weui.min.css">
+    <link rel="stylesheet" href="./src/bases/css/jquery-weui.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/weui.css">
+    <script src="./src/bases/js/jquery-2.1.4.js"></script>
+    <script src="./src/bases/js/jquery-weui.js"></script>
+    <script src="./src/bases/js/swiper.js"></script>
+    <script src="./src/bases/js/fastclick.js"></script>
+    <script src="./src/bases/js/swiper.min.js"></script>
+    <script src="./src/bases/js/iscroll.js"></script>
+    <script src="./src/bases/js/city.js"></script>
+    <script src="./src/bases/js/getping.js"></script>
+    <script src="./src/bases/js/bscroll.min.js"></script>
+    <script src="./src/bases/js/common.1.js"></script>
+    <script>
+        ! function(designWidth) {
+            if (/Android(?:\s+|\/)(\d+\.\d+)?/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / designWidth;
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',minimum-scale=' + phoneScale + ',maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=' + designWidth + ',user-scalable=no,target-densitydpi=device-dpi,minimal-ui,viewport-fit=cover">');
+            }
+        }(640);
+    </script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        ul,
+        ol {
+            list-style: none;
+        }
+        
+        .wrap {
+            min-width: 320px;
+            max-width: 768px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .wrapper {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .wrapper .scroller {
+            position: absolute;
+        }
+        
+        .wrapper .scroller li {
+            float: left;
+            width: 200px;
+            height: 270px;
+            line-height: 80px;
+            text-align: center;
+            font-style: none;
+            padding: 20px 20px 20px 0;
+        }
+        
+        .wrapper .scroller li img {
+            margin-left: 10px;
+        }
+        
+        .wrapper .scroller li span {
+            text-align: center;
+            display: block;
+        }
+        
+        h3 {
+            line-height: 60px
+        }
+        
+        .city {
+            margin-left: -100px;
+        }
+        
+        #wrapper ul li:nth-child(6) a {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="header-one">
+                <a href="index.html">
+                    <h2>库房滴滴</h2>
+                </a>
+                <div style="width:100px;font-size: 14px;margin-top:221px;margin-left:100px;height:50px;color: #292929;font-family: '微软雅黑'">
+                    <a href="allcity.html">
+                        <div class="mycity" @click="selectLocation()">
+                            {{city}}
+                            <img src="./src/assets/xiajiantou.png" style="width:10px;height:10px">
+                        </div>
+                    </a>
+                </div>
+                <div class="phone">
+                    <a href="tel:400-0571-233">
+                        <h4>400-0571-233</h4>
+                    </a>
+                    <img src="./src/assets/phone.png">
+                </div>
+            </div>
+            <div class="header-two">
+                <div id="wrapper">
+                    <ul>
+                        <li class=""><a href="index.html">网站首页</a></li>
+                        <li class="active"><a href="changfang.html">厂房</a></li>
+                        <li class=""><a href="cangku.html">仓库</a></li>
+                        <li class=""><a href="tudi.html">土地</a></li>
+                        <li class=""><a href="qiuzuqiugou.html">求租求购</a></li>
+                        <li class=""><a href="yuanqu.html">园区招商</a></li>
+                        <li class=""><a href="agent.html">经纪人</a></li>
+                        <li class=""><a href="encyclopedias.html">地产百科</a></li>
+                        <li class=""><a href="news.html">新闻资讯</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <!-- 图片轮播 -->
+
+            <!-- 主体 -->
+            <div>
+                <div class="lunbo">
+                    <img :src="titlePicture" id="ap1" :alt="title">
+                </div>
+                <div class="sub">
+                    <h3>{{title}}</h3>
+                    <p>均价:&nbsp;&nbsp;&nbsp;<span>{{parkprice}}元/㎡/月</span></p>
+                </div>
+                <div class="hotline">
+                    <p>咨询热线:&nbsp;&nbsp;<a v-bind:href="'tel:'+contactPhone">{{contactPhone}}</a>&nbsp;&nbsp;{{contact}}
+                        <a href="#" class="butie">领取专项补贴</a>
+                    </p>
+                </div>
+                <div class="time-area">
+                    <p>交房时间:&nbsp;&nbsp;<span>{{deliveryTime}}</span></p>
+                    <p>园区地址:&nbsp;&nbsp;<span>{{parkAddress}}</span></p>
+                </div>
+                <!-- 显示与隐藏 -->
+                <div class="more-information" v-on:click="toggle()">
+                    更多信息
+                </div>
+                <div class="information" v-show="isShow">
+                    <p>园区政策:&nbsp;&nbsp;<span>{{policy}}</span></p>
+                    <p>园区配套:&nbsp;&nbsp;<span>{{matching}}</span></p>
+                    <p>占地面积:&nbsp;&nbsp;<span>{{priceArea}}平方米</span></p>
+                    <p>消防等级:&nbsp;&nbsp;<span>{{fireRating}}</span></p>
+                    <p>总栋数:&nbsp;&nbsp;<span>{{allBuildingsNum}}栋</span></p>
+                    <p>产证:&nbsp;&nbsp;<span>{{productionCertificate}}</span></p>
+                    <div class="shouqi" v-on:click="toggle1()">
+                        收起信息
+                        <div class="more-information" v-show="isShow1">
+                            更多信息
+                        </div>
+                    </div>
+                </div>
+                <!-- 园区介绍 -->
+                <div class="all">
+                    <div class="area-content">
+                        <h3>园区介绍</h3>
+                        <p>{{introduce}}</p>
+                    </div>
+                </div>
+                <div class="all">
+                    <div class="area-content">
+                        <h3>园区户型</h3>
+                        <div class="wrapper" id="wrapper1">
+                            <div class="scroller">
+                                <ul class="clearfix">
+                                    <li v-for="item in zhanshi">
+                                        <img :src="item.images" :id="item.ad">
+                                        <h4>{{item.title}}</h4>
+                                        <p class="area">建筑面积:&nbsp;&nbsp;{{item.area}}</p>
+                                        <p>层高:&nbsp;&nbsp;{{item.cenggao}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="all">
+                    <div class="area-content">
+                        <h3>适合企业</h3>
+                        <p>{{suitableBusiness}}</p>
+                    </div>
+                </div>
+                <div class="all">
+                    <div class="area-content">
+                        <h3>楼栋信息</h3>
+                        <img :src="img" class="loudong">
+                        <p class="xinxi">{{loudongxx}}<span>{{weishou}}</span></p>
+                        <p>{{mianji}}</p>
+                        <p>{{cengshu}}</p>
+                    </div>
+                </div>
+                <div class="all">
+                    <div class="area-content">
+                        <h3>推荐园区</h3>
+                        <div class="lb" v-for="item in lbiao">
+                            <a v-bind:href="'yuanqu-xq.html?pid='+item.pid">
+                                <div class="left">
+                                    <img :src="titlePicture">
+                                </div>
+                                <div class="right">
+                                    <h4>{{item.title}}
+                                        <span v-for="item in item.lb">{{item.nice}}</span>
+                                    </h4>
+                                    <p class="area">建筑面积:&nbsp;&nbsp;<span>{{item.priceArea}}平方米</span></p>
+                                    <p class="area">园区地址:&nbsp;&nbsp;<span>{{item.parkAddress}}</span></p>
+                                    <p class="price" style="color:#BABABA;"><span style="color:red">{{parkprice}}元/㎡/月</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
+
+
+<script>
+    var serverHost = getServerHost();
+
+    //获取url中的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+
+    //接收URL中的参数booksId
+    var pid = getUrlParam('pid');
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isShow: false,
+            isShow1: false,
+            title: '',
+            parkprice: '',
+            contact: '',
+            contactPhone: '',
+            deliveryTime: '',
+            parkAddress: '',
+            policy: '',
+            matching: '',
+            priceArea: '',
+            fireRating: '',
+            allBuildingsNum: '',
+            productionCertificate: '',
+            introduce: '',
+            suitableBusiness: '',
+            titlePicture:'',
+            pageNum: 1,
+            pageSize: 10,
+            totalPages: 1,
+            lbiao: [],
+            city:'',
+            "zhanshi": [{
+                "images": './src/assets/huxing.jpg',
+                "ad": 'ad1',
+                "title": '吴兴区800-3000方独立产权厂房出售户型图 - A户型',
+                "area": '约1734平方米',
+                "cenggao": '4.5m+3.9m+3.9m+3.6m'
+            }, {
+                "images": './src/assets/huxing.jpg',
+                "ad": 'ad2',
+                "title": '吴兴区800-3000方独立产权厂房出售户型图 - A户型',
+                "area": '约1734平方米',
+                "cenggao": '4.5m+3.9m+3.9m+3.6m'
+            }, {
+                "images": './src/assets/huxing.jpg',
+                "ad": 'ad3',
+                "title": '吴兴区800-3000方独立产权厂房出售户型图 - A户型',
+                "area": '约1734平方米',
+                "cenggao": '4.5m+3.9m+3.9m+3.6m'
+            }, {
+                "images": './src/assets/huxing.jpg',
+                "ad": 'ad4',
+                "title": '吴兴区800-3000方独立产权厂房出售户型图 - A户型',
+                "area": '约1734平方米',
+                "cenggao": '4.5m+3.9m+3.9m+3.6m'
+            }, {
+                "images": './src/assets/huxing.jpg',
+                "ad": 'ad5',
+                "title": '吴兴区800-3000方独立产权厂房出售户型图 - A户型',
+                "area": '约1734平方米',
+                "cenggao": '4.5m+3.9m+3.9m+3.6m'
+            }, {
+                "images": './src/assets/huxing.jpg',
+                "ad": 'ad6',
+                "title": '吴兴区800-3000方独立产权厂房出售户型图 - A户型',
+                "area": '约1734平方米',
+                "cenggao": '4.5m+3.9m+3.9m+3.6m'
+            }, {
+                "images": './src/assets/huxing.jpg',
+                "ad": 'ad7',
+                "title": '吴兴区800-3000方独立产权厂房出售户型图 - A户型',
+                "area": '约1734平方米',
+                "cenggao": '4.5m+3.9m+3.9m+3.6m'
+            }, {
+                "images": './src/assets/huxing.jpg',
+                "ad": 'ad8',
+                "title": '吴兴区800-3000方独立产权厂房出售户型图 - A户型',
+                "area": '约1734平方米',
+                "cenggao": '4.5m+3.9m+3.9m+3.6m'
+            }, {
+                "images": './src/assets/huxing.jpg',
+                "ad": 'ad9',
+                "title": '吴兴区800-3000方独立产权厂房出售户型图 - A户型',
+                "area": '约1734平方米',
+                "cenggao": '4.5m+3.9m+3.9m+3.6m'
+            }],
+            "img": './src/assets/loudong.jpg',
+            "loudongxx": '13#-2、19#-2、25#-2',
+            "weishou": '未售',
+            "mianji": '主力面积约1182平方米',
+            "cengshu": '层数: 2层 首层层高: 8.1m 2层层高: 4.2m 柱距: 8m * 8m 地面堆截: 不超过2吨'
+        },
+        methods: {
+            toggle: function() {
+                this.isShow = !this.isShow;
+                this.isShow1 = false;
+            },
+            toggle1: function() {
+                this.isShow = !this.isShow;
+                this.isShow = false;
+            },
+            findData: function() {
+                var _this = app;
+                $.ajax({
+                    url: serverHost + '/parkStore/queryParkStoreByPid',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        pid: pid,
+                    },
+                    success: function(data) {
+                        _this.title = data.data.title;
+                        _this.parkprice = data.data.parkprice;
+                        _this.contact = data.data.contact;
+                        _this.contactPhone = data.data.contactPhone;
+                        _this.deliveryTime = data.data.deliveryTime;
+                        _this.parkAddress = data.data.parkAddress;
+                        _this.policy = data.data.policy;
+                        _this.matching = data.data.matching;
+                        _this.priceArea = data.data.priceArea;
+                        _this.fireRating = data.data.fireRating;
+                        _this.allBuildingsNum = data.data.allBuildingsNum;
+                        _this.productionCertificate = data.data.productionCertificate;
+                        _this.introduce = data.data.introduce;
+                        _this.suitableBusiness = data.data.suitableBusiness;
+                        _this.titlePicture = data.data.titlePicture;
+                    },
+                    error: function() {
+                        alert("asd");
+                    }
+                });
+                $.ajax({
+                    url: serverHost + '/parkStore/pageParkStore',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        pageNum: _this.pageNum,
+                        pageSize: _this.pageSize,
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.lbiao = data.data.content;
+                        _this.totalPages = data.data.totalPages;
+                    },
+                    error: function() {
+
+                    }
+                })
+            }
+        },
+    })
+    app.findData();
+</script>
+<script>
+    function myFun(result) {
+        var cityName = result.name;
+        //map.setCenter(cityName);
+
+        if (localStorage.name == "null") {
+            app.city = cityName
+        } else {
+            app.city = localStorage.getItem("name")
+        }
+    }
+    var myCity = new BMap.LocalCity();
+    myCity.get(myFun);
+</script>
+<script type="text/javascript" src="./src/bases/js/iscroll.js"></script>
+<script type="text/javascript" src="./src/bases/js/navbarscroll.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.wrapper').navbarscroll();
+    });
+</script>
+<script>
+    var ap1 = $.photoBrowser({
+        items: [
+            "./src/assets/lb.jpg",
+            "./src/assets/lb.jpg",
+            "./src/assets/lb.jpg",
+            "./src/assets/lb.jpg",
+            "./src/assets/lb.jpg",
+        ],
+
+        onSlideChange: function(index) {
+            console.log(this, index);
+        },
+
+        onOpen: function() {
+            console.log("onOpen", this);
+        },
+        onClose: function() {
+            console.log("onClose", this);
+        }
+    });
+    $("#ap1").click(function() {
+        ap1.open(0);
+    });
+
+
+    var ad1 = $.photoBrowser({
+        items: [
+            "./src/assets/huxing.jpg",
+        ],
+
+        onSlideChange: function(index) {
+            console.log(this, index);
+        },
+
+        onOpen: function() {
+            console.log("onOpen", this);
+        },
+        onClose: function() {
+            console.log("onClose", this);
+        }
+    });
+    $("#ad1").click(function() {
+        ad1.open(2);
+    });
+    var ad2 = $.photoBrowser({
+        items: [
+            "./src/assets/huxing.jpg",
+        ],
+
+        onSlideChange: function(index) {
+            console.log(this, index);
+        },
+
+        onOpen: function() {
+            console.log("onOpen", this);
+        },
+        onClose: function() {
+            console.log("onClose", this);
+        }
+    });
+    $("#ad2").click(function() {
+        ad2.open(2);
+    });
+    var ad3 = $.photoBrowser({
+        items: [
+            "./src/assets/huxing.jpg",
+        ],
+
+        onSlideChange: function(index) {
+            console.log(this, index);
+        },
+
+        onOpen: function() {
+            console.log("onOpen", this);
+        },
+        onClose: function() {
+            console.log("onClose", this);
+        }
+    });
+    $("#ad3").click(function() {
+        ad3.open(2);
+    });
+    var ad4 = $.photoBrowser({
+        items: [
+            "./src/assets/huxing.jpg",
+        ],
+
+        onSlideChange: function(index) {
+            console.log(this, index);
+        },
+
+        onOpen: function() {
+            console.log("onOpen", this);
+        },
+        onClose: function() {
+            console.log("onClose", this);
+        }
+    });
+    $("#ad4").click(function() {
+        ad4.open(2);
+    });
+    var ad5 = $.photoBrowser({
+        items: [
+            "./src/assets/huxing.jpg",
+        ],
+
+        onSlideChange: function(index) {
+            console.log(this, index);
+        },
+
+        onOpen: function() {
+            console.log("onOpen", this);
+        },
+        onClose: function() {
+            console.log("onClose", this);
+        }
+    });
+    $("#ad5").click(function() {
+        ad5.open(2);
+    });
+    var ad6 = $.photoBrowser({
+        items: [
+            "./src/assets/huxing.jpg",
+        ],
+
+        onSlideChange: function(index) {
+            console.log(this, index);
+        },
+
+        onOpen: function() {
+            console.log("onOpen", this);
+        },
+        onClose: function() {
+            console.log("onClose", this);
+        }
+    });
+    $("#ad6").click(function() {
+        ad6.open(2);
+    });
+    var ad7 = $.photoBrowser({
+        items: [
+            "./src/assets/huxing.jpg",
+        ],
+
+        onSlideChange: function(index) {
+            console.log(this, index);
+        },
+
+        onOpen: function() {
+            console.log("onOpen", this);
+        },
+        onClose: function() {
+            console.log("onClose", this);
+        }
+    });
+    $("#ad7").click(function() {
+        ad7.open(2);
+    });
+    var ad8 = $.photoBrowser({
+        items: [
+            "./src/assets/huxing.jpg",
+        ],
+
+        onSlideChange: function(index) {
+            console.log(this, index);
+        },
+
+        onOpen: function() {
+            console.log("onOpen", this);
+        },
+        onClose: function() {
+            console.log("onClose", this);
+        }
+    });
+    $("#ad8").click(function() {
+        ad8.open(2);
+    });
+    var ad9 = $.photoBrowser({
+        items: [
+            "./src/assets/huxing.jpg",
+        ],
+
+        onSlideChange: function(index) {
+            console.log(this, index);
+        },
+
+        onOpen: function() {
+            console.log("onOpen", this);
+        },
+        onClose: function() {
+            console.log("onClose", this);
+        }
+    });
+    $("#ad9").click(function() {
+        ad9.open(2);
+    });
+</script>
+<script type="text/javascript">
+    var myScroll = new IScroll('#wrapper', {
+        mouseWheel: true,
+        scrollX: true,
+        click:true,
+        taps:true
+        // 横向滚动导航栏
+    });
+    // 初始化
+</script>

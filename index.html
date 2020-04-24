@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>库房滴滴</title>
+    <link rel="Shortcut Icon" href="./src/assets/logo1.png" />
+    <!-- <script src="/static/common/hplus/js/jQuery.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YcOGuCXZOmSuEC3cKfDTbDlI"></script>
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/city.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/home.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/weui.css">
+    <script src="./src/bases/js/bscroll.min.js"></script>
+    <script src="./src/bases/js/city.js"></script>
+    <script src="./src/bases/js/getping.js"></script>
+    <script src="./src/bases/js/tab.js"></script>
+    <script src="./src/bases/js/jquery-2.1.4.js"></script>
+    <script src="./src/bases/js/fastclick.js"></script>
+    <script src="src/bases/js/jquery-weui.js"></script>
+    <script src="./src/bases/js/common.1.js"></script>
+    <script src="./src/bases/js/phone.js"></script>
+    <script>
+        ! function(designWidth) {
+            if (/Android(?:\s+|\/)(\d+\.\d+)?/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / designWidth;
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',minimum-scale=' + phoneScale + ',maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=' + designWidth + ',user-scalable=no,target-densitydpi=device-dpi,minimal-ui,viewport-fit=cover">');
+            }
+        }(640);
+    </script>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="header">
+            <div class="header_top">
+                <img src="./src/assets/header_top.jpg">
+                <a href="allcity.html">
+                    <div id="map">
+                        {{city}}
+                        <img src="./src/assets/xiajiantou.png">
+                    </div>
+                </a>
+                <div class="sousuo">
+                    <input type="search" id="keyword" placeholder="搜索厂房、仓库、土地" style="font-size: 22px">
+                </div>
+                <div class="img-more">
+                    <img src="./src/assets/more.png" class="more">
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="liebiao">
+                    <ul>
+                        <li>
+                            <a href="changfang.html">
+                                <img src="./src/assets/changfang.png">
+                                <p>厂房</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="cangku.html">
+                                <img src="./src/assets/cangku.png">
+                                <p>仓库</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tudi.html">
+                                <img src="./src/assets/tudi.png">
+                                <p>土地</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="yuanqu.html">
+                                <img src="./src/assets/yuanquzhaoshang.png">
+                                <p>园区招商</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="qiuzuqiugou.html">
+                                <img src="./src/assets/qiuzuqiugou.png">
+                                <p>求租求购</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="agent.html">
+                                <img src="./src/assets/agent.png">
+                                <p>经纪人</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="xuanzhi.html">
+                                <img src="./src/assets/bangwoxuanzhi.png">
+                                <p>帮我选址</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="news.html">
+                                <img src="./src/assets/xinwenzixun.png">
+                                <p>新闻资讯</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="zixun">
+                    <a href="encyclopedias.html">
+                        <div class="left">
+                            <span>百科<img src="./src/assets/toutiao.png"></span>
+                        </div>
+                        <div class="right">
+                            <span>精选</span>
+                            <a href="#">标准厂房尺寸为多少，间距为多少比较好？</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="weui-tab">
+                <div class="weui-navbar">
+                    <a class="weui-navbar__item" href="#tab1">
+                厂房
+            </a>
+                    <a class="weui-navbar__item" href="#tab2">
+                土地
+            </a>
+                    <a class="weui-navbar__item" href="#tab3">
+                仓库
+            </a>
+                    <a class="weui-navbar__item" href="#tab4">
+                园区
+            </a>
+                </div>
+                <div class="weui-tab__panel">
+                    <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active">
+                        <div class="tu-content" v-for="item in changfang">
+                            <a v-bind:href="'changfang-xq.html?productId='+item.productId">
+                                <img :src="item.titlePicture">
+                                <div class="content">
+                                    <h3>{{item.title}}</h3>
+                                    <p>{{item.region}}</p>
+                                    <p class="prcie">{{item.rent}}{{item.rentUnit}}</p>
+                                    <p class="area">{{item.area}}{{item.areaUnit}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="tab2" class="weui_tab_bd_item">
+                        <div class="tu-content" v-for="item in tudi">
+                            <a v-bind:href="'tudi-xq.html?productId='+item.productId">
+                                <img :src="item.titlePicture">
+                                <div class="content">
+                                    <h3>{{item.title}}</h3>
+                                    <p>{{item.region}}</p>
+                                    <p class="prcie">{{item.rent}}{{item.rentUnit}}</p>
+                                    <p class="area">{{item.area}}{{item.areaUnit}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="tab3" class="weui_tab_bd_item">
+                        <div class="tu-content" v-for="item in cangku">
+                            <a v-bind:href="'cangku-xq.html?productId='+item.productId">
+                                <img :src="item.titlePicture">
+                                <div class="content">
+                                    <h3>{{item.title}}</h3>
+                                    <p>{{item.region}}</p>
+                                    <p class="prcie">{{item.rent}}{{item.rentUnit}}</p>
+                                    <p class="area">{{item.area}}{{item.areaUnit}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="tab4" class="weui_tab_bd_item">
+                        <div class="tu-content" v-for="item in yuanqu">
+                            <a v-bind:href="'yuanqu-xq.html?pid='+item.pid">
+                                <img :src="item.titlePicture">
+                                <div class="content">
+                                    <h3>{{item.title}}</h3>
+                                    <p>{{item.region}}</p>
+                                    <p class="prcie">{{item.rent}}{{item.rentUnit}}</p>
+                                    <p class="area">{{item.area}}{{item.areaUnit}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="fuwu">
+            <ul>
+                <li><a href="javascript:;">意见反馈</a></li>
+                <li><a href="javascript:;">手机号被冒用</a></li>
+                <li><a href="javascript:;">服务条款</a></li>
+            </ul>
+            <p>库房滴滴-专注厂房、土地、仓库及园区的租售平台!</p>
+            <p>浙ICP备14017628号 公安备案：3301102013057</p>
+            <p>增值电信业务经营许可证：浙B2-20140369</p>
+        </div>
+        <div class="flex" onload="load()">
+            <a id='test' href="javascript:void(0);" style="display: none;"></a>
+            <a id='down' href="javascript:;">
+                <img src="./src/assets/logo1.png" class="simple">
+                <p>APP 速度快一倍，流量省80%</p>
+                <button onclick="download()">立即下载</button>
+            </a>
+        </div>
+    </div>
+</body>
+<script>
+    //获取url中的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r != null) return decodeURI(r[2]);
+        return null; //返回参数值
+    }
+
+    //接收URL中的参数booksId
+    var city = getUrlParam('city');
+    localStorage.setItem("name", city);
+
+    function myFun(result) {
+        var cityName = result.name;
+        //map.setCenter(cityName);
+
+        if (localStorage.name == "null") {
+            app.city = cityName,
+                localStorage.setItem("city", cityName)
+        } else {
+            app.city = localStorage.name
+        }
+    }
+    var myCity = new BMap.LocalCity();
+    myCity.get(myFun);
+</script>
+<script type="text/javascript">
+    var serverHost = getServerHost();
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            changfang: [],
+            tudi: [],
+            cangku: [],
+            yuanqu: [],
+            city: ''
+        },
+        methods: {
+            findData: function() {
+                $.ajax({
+                    url: serverHost + "/fplHouse/pageFplHouse",
+                    type: "post",
+                    dataType: "json",
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("X-Custom-Header1", "Bar");
+                    },
+                    data: {
+                        pageNum: 1,
+                        pageSize: 10,
+                        types: 1,
+                    },
+                    async: false,
+                    success: function(data) {
+
+                        app.changfang = data.data.content; //返回的厂房列表
+
+                    },
+                    error: function() {
+
+                    }
+                });
+
+                $.ajax({
+                    url: serverHost + "/fplHouse/pageFplHouse",
+                    type: "post",
+                    dataType: "json",
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("X-Custom-Header1", "Bar");
+                    },
+                    data: {
+                        pageNum: 1,
+                        pageSize: 10,
+                        types: 2,
+                    },
+                    async: false,
+                    success: function(data) {
+
+                        app.tudi = data.data.content; //返回的厂房列表
+
+                    },
+                    error: function() {
+
+                    }
+                });
+
+                $.ajax({
+                    url: serverHost + "/fplHouse/pageFplHouse",
+                    type: "post",
+                    dataType: "json",
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("X-Custom-Header1", "Bar");
+                    },
+                    data: {
+                        pageNum: 1,
+                        pageSize: 10,
+                        types: 3,
+                    },
+                    async: false,
+                    success: function(data) {
+
+                        app.cangku = data.data.content; //返回的厂房列表
+
+                    },
+                    error: function() {
+
+                    }
+                });
+
+                $.ajax({
+                    url: serverHost + "/parkStore/pageParkStore",
+                    type: "post",
+                    dataType: "json",
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("X-Custom-Header1", "Bar");
+                    },
+                    data: {
+                        pageNum: 1,
+                        pageSize: 10,
+                    },
+                    async: false,
+                    success: function(data) {
+
+                        app.yuanqu = data.data.content; //返回的园区列表
+
+                    },
+                    error: function() {
+
+                    }
+                });
+
+            }
+        },
+    })
+    app.findData();
+    browserRedirect();
+
+    function download() {
+        window.location = 'http://back.zhanchengwlkj.com/DownloadProject/download/index.html?name=kufangdidi';
+    }
+    $("#keyword").on('keypress',function(e) {
+                var keycode = e.keyCode;
+                var searchName = $(this).val();
+                if(keycode=='13') {
+                    e.preventDefault();  
+                    //请求搜索接口 
+                    var title = $("#keyword").val();
+                    $.ajax({
+                    	url:serverHost+'/fplHouse/queryFplHousePOByTitle',
+                    	type:'post',
+                    	dataType: 'json',
+                    	data:{
+                    		title: title
+                    	},
+                    	async:false,
+                    	success:function(data){
+                    		window.location = './search.html?title=' + encodeURI(encodeURI(title))
+                    	}
+                    })
+                }
+        });
+</script>
+
+</html>
+<script>
+    $(function() {
+        $('.weui-navbar__item').on('click', function() {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+
+            //内容切换
+            $(".weui-tab__panel .weui_tab_bd_item_active").removeClass('weui_tab_bd_item_active');
+            var data_toggle = jQuery(this).attr("href");
+            $(data_toggle).addClass("weui_tab_bd_item_active");
+        });
+    });
+</script>

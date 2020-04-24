@@ -1,0 +1,403 @@
+html {
+    font-size: 62.5%;
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-one {
+    height: 60px;
+    width: 100%;
+    background: red;
+    line-height: 60px;
+}
+
+.header-one h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.header-one .map {
+    width: 15%;
+    height: 50px;
+    margin-left: 125px;
+    margin-top: -60px;
+    color: #ffffff;
+}
+
+.header-one .map span {
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    float: left;
+}
+
+.header-one .map img {
+    margin-top: 12px;
+    margin-left: 3px;
+    width: 15px;
+    height: 15px;
+}
+
+#atCity {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.phone {
+    height: 50px;
+    float: right;
+    margin-top: -50px;
+    margin-left: 40px;
+}
+
+.phone h4 {
+    margin-right: 40px;
+    font-weight: normal;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.phone img {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -52px;
+    left: 110px;
+}
+
+.header-two {
+    height: 60px;
+    line-height: 60px;
+    background: #ffffff;
+}
+
+.header-two ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin-left: 3px;
+    padding-right: 45px;
+}
+
+.header-two ul li a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #333333;
+}
+
+.section {
+    margin-top: 195px;
+}
+
+.simple {
+    width: 50px;
+    height: 50px;
+    background: rgba(88, 88, 88, 0.67);
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.flex p {
+    position: relative;
+    top: -90px;
+    left: 90px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.flex button {
+    padding: 10px 20px;
+    background: red;
+    position: absolute;
+    top: 13px;
+    font-size: 18px;
+    left: 520px;
+    border: 1px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: normal;
+}
+
+.flex {
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    margin-top: -50px;
+    background: rgba(12, 10, 10, 0.67);
+    position: fixed;
+    top: 170px;
+    z-index: 1;
+}
+
+#wrapper ul {
+    width: 210%;
+}
+
+#wrapper ul li {
+    width: 100px;
+    height: 60px;
+    background: #ffffff;
+    float: left;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+}
+
+#wrapper ul li a {
+    font-size: 18px;
+}
+
+.mycity {
+    height: 50px;
+    text-align: center;
+    font-size: 14px;
+    margin: 20px 0;
+    color: #ffffff;
+    margin-top: -281px;
+    margin-left: 30px;
+}
+
+.mycity img {
+    position: relative;
+    top: -1px;
+    left: -1px;
+}
+
+.quyu-paixu {
+    font-size: 18px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+
+.quyu-paixu div {
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+}
+
+.quyu-paixu div:nth-child(1) {
+    border-right: 1px solid #c2bfbf;
+}
+
+.agent-list {
+    border-top: 1px solid #8d8c8c;
+    width: 100%;
+    height: 124px;
+}
+
+.agent-list .left {
+    float: left;
+    margin: 15px;
+}
+
+.agent-list .left img {
+    width: 90px;
+    height: 90px;
+}
+
+.agent-list .right {
+    width: 80%;
+    float: left;
+    margin-top: 18px;
+}
+
+.agent-list .right h3 {
+    color: black;
+    font-size: 18px;
+}
+
+.agent-list .right h3 span {
+    font-size: 16px;
+    padding: 0 2px;
+    border: 1px solid red;
+    color: red;
+    margin-left: 5px;
+}
+
+.agent-list .right p {
+    font-size: 16px;
+    margin-top: 3px;
+    color: black;
+}
+
+.agent-list .right .popularity {
+    color: #6e6d6d;
+}
+
+.text-f {
+    text-align: center;
+    padding: 20px 5px 20px 5px;
+    font-size: 14px;
+    background: #F3F3F3;
+}
+
+.pagination .current {
+    padding: 5px 10px;
+    border: 1px solid red;
+    color: red;
+}
+
+.pagination a {
+    border: 1px solid red;
+    color: red;
+    padding: 5px 10px;
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+.pagination .current:active {
+    background: red;
+    color: #ffffff;
+}
+
+.ui-content li {
+    display: inline-block;
+    width: 49%;
+    font-size: 18px;
+    text-align: center;
+}
+
+._citys {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    z-index: 100;
+    background: #fff;
+    top: 180px;
+}
+
+._citys span {
+    color: #56b4f8;
+    height: 15px;
+    width: 15px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 3px;
+    position: absolute;
+    right: 1em;
+    top: 10px;
+    cursor: pointer;
+}
+
+._citys0 {
+    width: 100%;
+    height: 60px;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+._citys0 li {
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    overflow: hidden;
+    font-size: 20px;
+    color: #888;
+    width: 80px;
+    text-align: center;
+    cursor: pointer;
+    width: 33%;
+}
+
+.citySel {
+    border-bottom: 2px solid red;
+}
+
+._citys1 {
+    width: 100%;
+    display: inline-block;
+    padding: 10px 0;
+    overflow: auto;
+}
+
+._citys1 a {
+    height: 50px;
+    display: block;
+    color: #666;
+    padding-left: 6px;
+    margin-top: 3px;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    overflow: hidden;
+    border-bottom: 1px dashed #7a7a7a;
+}
+
+._citys1 a:hover {
+    color: #fff;
+    background-color: #56b4f8;
+}
+
+li {
+    list-style-type: none;
+}
+
+#PoPy {
+    position: relative;
+    top: 0;
+}
+
+#test {
+    width: 100%;
+    position: relative;
+    top: -1355px;
+    text-align: center;
+}
+
+.ui-content {
+    width: 50%;
+    border-right: 1px solid;
+}
+
+#city {
+    width: 100%;
+}
+
+.yc {
+    width: 100%;
+    height: 300px;
+    background: #fff;
+    position: relative;
+    top: -90px;
+}
+
+.yc ul li {
+    list-style: none;
+    font-size: 18px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px dashed #a0a0a0;
+    text-align: left;
+}
+
+.pai {
+    width: 50%;
+    height: 50px;
+    background: #fff;
+    position: relative;
+    left: 50%;
+    top: -40px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.pai img {
+    position: relative;
+    left: 5px;
+    top: 1px;
+}

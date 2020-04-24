@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>库房滴滴</title>
+    <link rel="Shortcut Icon" href="./src/assets/logo1.png" />
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/news.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/weui.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/city.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/dialog.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YcOGuCXZOmSuEC3cKfDTbDlI"></script>
+    <script src="./src/bases/js/iscroll.js"></script>
+    <script src="./src/bases/js/jquery-2.1.4.js"></script>
+    <script src="./src/bases/js/fastclick.js"></script>
+    <script src="src/bases/js/jquery-weui.js"></script>
+    <script src="./src/bases/js/city.js"></script>
+    <script src="./src/bases/js/getping.js"></script>
+    <script src="./src/bases/js/bscroll.min.js"></script>
+    <script src="./src/bases/js/common.1.js"></script>
+    <script src="./src/bases/js/mDialogMin.js"></script>
+    <script src="./src/bases/js/phone.js"></script>
+    <style>
+        #wrapper ul li:nth-child(9) a {
+            color: red;
+        }
+        
+        .youdian {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        ! function(designWidth) {
+            if (/Android(?:\s+|\/)(\d+\.\d+)?/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / designWidth;
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',minimum-scale=' + phoneScale + ',maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=' + designWidth + ',user-scalable=no,target-densitydpi=device-dpi,minimal-ui,viewport-fit=cover">');
+            }
+        }(640);
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="header-one">
+                <a href="index.html">
+                    <h2>库房滴滴</h2>
+                </a>
+                <div id="map" style="width:100px;font-size: 14px;color: #292929;font-family: '微软雅黑'">
+                    <a href="allcity.html">
+                        <div class="mycity" @click="selectLocation()">
+                            {{city}}
+                            <img src="./src/assets/xiajiantou.png" style="width:10px;height:10px">
+                        </div>
+                    </a>
+                </div>
+                <div class="phone">
+                    <a href="tel:400-0571-233">400-0571-233</a>
+                    <img src="./src/assets/phone.png">
+                </div>
+            </div>
+            <div class="header-two">
+                <div id="wrapper">
+                    <ul>
+                        <li class=""><a href="index.html">网站首页</a></li>
+                        <li class="active"><a href="changfang.html">厂房</a></li>
+                        <li class=""><a href="cangku.html
+                                            ">仓库</a></li>
+                        <li class=""><a href="tudi.html">土地</a></li>
+                        <li class=""><a href="qiuzuqiugou.html">求租求购</a></li>
+                        <li class=""><a href="yuanqu.html">园区招商</a></li>
+                        <li class=""><a href="agent.html">经纪人</a></li>
+                        <li class=""><a href="encyclopedias.html">地产百科</a></li>
+                        <li class=""><a href="news.html">新闻资讯</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section">
+            <div class="fenlei">
+                <ul>
+                    <!-- <li><button>安通有话说</button></li>
+                <li><button>监测有话说</button></li>
+                <li><button>项目招商</button></li>
+                <li><button>园区动态</button></li>
+                <li><button>指数分析</button></li> -->
+                    <li><a href="javascript:;" @click="findData(1,1)">推荐</a></li>
+                    <li><a href="javascript:;" @click="findData(1,2)">监测有话说</a></li>
+                    <li><a href="javascript:;" @click="findData(1,3)">项目招商</a></li>
+                    <li><a href="javascript:;" @click="findData(1,4)">园区动态</a></li>
+                    <li><a href="javascript:;" @click="findData(1,5)">指数分析</a></li>
+                </ul>
+            </div>
+            <div class="zhuti">
+                <div class="news" v-for="item in news">
+                    <a v-bind:href="'news-xq.html?nid='+item.nid">
+                        <h3>{{item.title}}</h3>
+                        <p>{{item.createTime}}</p>
+                    </a>
+                </div>
+            </div>
+            <div class="text-f">
+                <div class="pagination">
+                    <a v-on:click="pageClickSub()">上一页</a>
+                    <a v-on:click="pageClickAdd()">下一页</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+        <div class="fuwu">
+            <ul>
+                <li><a href="javascript:;">意见反馈</a></li>
+                <li><a href="javascript:;">手机号被冒用</a></li>
+                <li><a href="javascript:;">服务条款</a></li>
+            </ul>
+            <p>库房滴滴-专注厂房、土地、仓库及园区的租售平台!</p>
+            <p>浙ICP备14017628号 公安备案：3301102013057</p>
+            <p>增值电信业务经营许可证：浙B2-20140369</p>
+        </div>
+        <div class="flex" onload="load()">
+            <a id='test' href="javascript:void(0);" style="display: none;"></a>
+            <a id='down' href="javascript:;">
+                <img src="./src/assets/logo1.png" class="simple">
+                <p>APP 速度快一倍，流量省80%</p>
+                <button onclick="download()">立即下载</button>
+            </a>
+            <div id="tipsdiv" class="wtips" style="display: none">
+                <img id="tips_weix" src="">
+            </div>
+        </div>
+    </div>
+        </div>
+        
+    </div>
+    
+</body>
+
+</html>
+<script>
+    var serverHost = getServerHost();
+    var app = new Vue({
+        el: '#app',
+        data: {
+            news: [],
+            pageNum: 1,
+            pageSize: 20,
+            totalPages: 1,
+            type: 1,
+            city: ''
+        },
+
+        methods: {
+            findData: function(pageNum, type) {
+                if (type != -1) {
+                    app.type = type;
+                }
+                var _this = app;
+                $.ajax({
+                    url: serverHost + '/newsController/pageNews',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        pageNum: _this.pageNum,
+                        pageSize: _this.pageSize,
+                        type: _this.type,
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.news = data.data.content;
+                        _this.totalPages = data.data.totalPages;
+                    }
+                })
+            },
+            pageClickSub: function() {
+                if (this.pageNum <= 1) {
+                    Dialog.init('已经是第一页了', 1100);
+                } else {
+                    this.pageNum = this.pageNum - 1;
+                    news.findData();
+                }
+            },
+            pageClickAdd: function() {
+                if (this.pageNum >= this.totalPages) {
+                    Dialog.init('没有更多了', 1100);
+                } else {
+                    this.pageNum = this.pageNum + 1;
+                    news.findData();
+                }
+            }
+        },
+    })
+    app.findData();
+    
+    function download(){
+    	window.location = 'http://back.zhanchengwlkj.com/DownloadProject/download/index.html?name=kufangdidi';
+    }
+</script>
+<script>
+    function myFun(result) {
+        var cityName = result.name;
+        //map.setCenter(cityName);
+
+        if (localStorage.name == "null") {
+            app.city = cityName
+        } else {
+            app.city = localStorage.getItem("name")
+        }
+    }
+    var myCity = new BMap.LocalCity();
+    myCity.get(myFun);
+</script>
+
+<script type="text/javascript">
+    var myScroll = new IScroll('#wrapper', {
+        mouseWheel: true,
+        scrollX: true,
+        click:true,
+        taps:true
+            // 横向滚动导航栏
+    });
+    // 初始化
+</script>

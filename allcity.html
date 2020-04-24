@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="Shortcut Icon" href="./src/assets/logo1.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/allcity.css">
+    <script src="./src/bases/js/common.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./src/bases/js/jquery-2.1.4.js"></script>
+    <title>库房滴滴</title>
+    <script>
+        ! function(designWidth) {
+            if (/Android(?:\s+|\/)(\d+\.\d+)?/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / designWidth;
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',minimum-scale=' + phoneScale + ',maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=' + designWidth + ',user-scalable=no,target-densitydpi=device-dpi,minimal-ui,viewport-fit=cover">');
+            }
+        }(640);
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <!--城市列表-->
+        <div class="bg-interval full-bg">
+            <div class="container entrance-body pt-15 pb-30">
+                <div class="hot-city clearfix">
+                    <span class="title">热门城市</span>
+                    <div class="hot-city-list">
+                        <a href="index.html?city=杭州" class="now-city" target="_blank" title="杭州厂房网">进入杭州站<i
+                            class="icon iconfont icon-xiangyou"></i></a>
+                        <a href="index.html?city=北京" title="北京厂房网" target="_blank">北京</a>
+                        <a href="index.html?city=上海" title="上海厂房网" target="_blank">上海</a>
+                        <a href="index.html?city=天津" title="天津厂房网" target="_blank">天津</a>
+                        <a href="index.html?city=重庆" title="重庆厂房网" target="_blank">重庆</a>
+                        <a href="index.html?city=广州" title="广州厂房网" target="_blank">广州</a>
+                        <a href="index.html?city=深圳" title="深圳厂房网" target="_blank">深圳</a>
+                        <a href="index.html?city=珠海" title="珠海厂房网" target="_blank">珠海</a>
+                        <a href="index.html?city=佛山" title="佛山厂房网" target="_blank">佛山</a>
+                        <a href="index.html?city=杭州" title="杭州厂房网" target="_blank">杭州</a>
+                        <a href="index.html?city=嘉兴" title="嘉兴厂房网" target="_blank">嘉兴</a>
+                        <a href="index.html?city=宁波" title="宁波厂房网" target="_blank">宁波</a>
+                        <a href="index.html?city=湖州" title="湖州厂房网" target="_blank">湖州</a>
+                        <a href="index.html?city=绍兴" title="绍兴厂房网" target="_blank">绍兴</a>
+                        <a href="index.html?city=衢州" title="衢州厂房网" target="_blank">衢州</a>
+                        <a href="index.html?city=厦门" title="厦门厂房网" target="_blank">厦门</a>
+                        <a href="index.html?city=南京" title="南京厂房网" target="_blank">南京</a>
+                        <a href="index.html?city=无锡" title="无锡厂房网" target="_blank">无锡</a>
+                        <a href="index.html?city=苏州" title="苏州厂房网" target="_blank">苏州</a>
+                    </div>
+                </div>
+                <div class="choose-city clearfix">
+                    <span class="title">城市选择</span>
+                    <div id="tmplist">
+                        <div class="entrance-list clearfix">
+                            <div class="entrance-block">
+                                <div class="entrance-line">
+                                    <ul>
+                                        <!--<li v-for="item in list">
+                                            <a v-bind:href="'index.html?city='+item.shortName" class="active">{{item.shortName}}</a>
+                                        </li>-->
+                                        <a v-bind:href="'index.html?city='+item.shortName" class="active" v-for="item in list">
+                                        	<li>{{item.shortName}}</li>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    var serverHost = getServerHost();
+    var app = new Vue({
+        el: '#app',
+        data: {
+            list: [],
+            level: 2
+        },
+        methods: {
+            findData: function() {
+                var _this = app;
+                $.ajax({
+                    url: serverHost + '/data/queryCityByLevel',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        level: _this.level
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.list = data.data;
+                    },
+                    error: function() {
+                        alert("asd");
+                    }
+                })
+            }
+        },
+    })
+    app.findData();
+</script>

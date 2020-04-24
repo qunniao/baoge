@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>库房滴滴</title>
+    <link rel="Shortcut Icon" href="./src/assets/logo1.png" />
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/qiuzuqiugou-xq.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/weui.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/jquery-weui.css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YcOGuCXZOmSuEC3cKfDTbDlI"></script>
+    <script src="./src/bases/js/vue.js"></script>
+    <script src="./src/bases/js/iscroll.js"></script>
+    <script src="./src/bases/js/jquery-2.1.4.js"></script>
+    <script src="./src/bases/js/fastclick.js"></script>
+    <script src="src/bases/js/jquery-weui.js"></script>
+    <script src="./src/bases/js/common.1.js"></script>
+    <script src="./src/bases/js/phone.js"></script>
+    <script>
+        ! function(designWidth) {
+            if (/Android(?:\s+|\/)(\d+\.\d+)?/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / designWidth;
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',minimum-scale=' + phoneScale + ',maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=' + designWidth + ',user-scalable=no,target-densitydpi=device-dpi,minimal-ui,viewport-fit=cover">');
+            }
+        }(640);
+    </script>
+    <style>
+        #wrapper ul li:nth-child(5) a {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="header-one">
+                <a href="index.html">
+                    <h2>库房滴滴</h2>
+                </a>
+                <div class="map">
+                    <a href="allcity.html">
+                        <div class="mycity" @click="selectLocation()">
+                            {{city}}
+                            <img src="./src/assets/xiajiantou.png" style="width:10px;height:10px">
+                        </div>
+                    </a>
+                </div>
+                <div class="phone">
+                    <h4>400-0571-233</h4>
+                    <img src="./src/assets/phone.png">
+                </div>
+            </div>
+            <div class="header-two">
+                <div id="wrapper">
+                    <ul>
+                        <li class=""><a href="index.html">网站首页</a></li>
+                        <li class="active"><a href="changfang.html">厂房</a></li>
+                        <li class=""><a href="cangku.html
+                            ">仓库</a></li>
+                        <li class=""><a href="tudi.html">土地</a></li>
+                        <li class=""><a href="qiuzuqiugou.html">求租求购</a></li>
+                        <li class=""><a href="yuanqu.html">园区招商</a></li>
+                        <li class=""><a href="agent.html">经纪人</a></li>
+                        <li class=""><a href="encyclopedias.html">地产百科</a></li>
+                        <li class=""><a href="news.html">新闻资讯</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex">
+                <a href="javascript:;">
+                    <img src="./src/assets/logo1.png" class="simple">
+                    <p>APP 速度快一倍，流量省80%</p>
+                    <button onclick="download()">立即打开</button>
+                </a>
+            </div>
+        </div>
+        <div class="section">
+            <div class="title">
+                <h3>{{title}}<span>收藏</span></h3>
+                <p>{{createTime}}<span>浏览:11次</span></p>
+            </div>
+
+            <!-- 基本信息 -->
+            <div class="all">
+                <div class="subtitlea">
+                    <img src="./src/assets/jibenxinxi.png">
+                    <h3>基本信息</h3>
+                </div>
+                <div class="dsc_box">
+                    <div class="singleline">
+                        <span class="half"><span class="subtitle">编号:</span><span class="info">{{productId}}</span></span>
+                    </div>
+                    <div class="singleline">
+                        <span class="half"><span class="subtitle">类型:</span><span class="info">{{supportingDemand}}</span></span>
+                    </div>
+                    <div class="singleline">
+                        <span class="half"><span class="subtitle">区域:</span><span class="info">{{region}}</span></span>
+                        <span class="half" id="area"><span class="subtitle">面积:</span><span class="infoq">{{areaLower}}-{{areaCap}}平方米</span></span>
+                    </div>
+                    <div class="singleline">
+                        <span class="half"><span class="subtitle">用途:</span><span class="info">{{functionalUse}}</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="all">
+                <div class="subtitlea">
+                    <img src="./src/assets/jibenxinxi.png">
+                    <h3>建筑参数</h3>
+                </div>
+                <div class="dsc_box">
+                    <div class="singleline">
+                        <span class="half"><span class="subtitle">特殊需求:</span><span class="info">{{detailedDescription}}</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="all">
+                <div class="subtitlea">
+                    <img src="./src/assets/xiangxijieshao.png">
+                    <h3>详细介绍</h3>
+                </div>
+                <div class="jieshao">
+                    <p style="font-size: 16px;">{{detailedDescription}}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="fuwu">
+            <ul>
+                <li><a href="javascript:;">意见反馈</a></li>
+                <li><a href="javascript:;">手机号被冒用</a></li>
+                <li><a href="javascript:;">服务条款</a></li>
+            </ul>
+            <p>库房滴滴-专注厂房、土地、仓库及园区的租售平台!</p>
+            <p>浙ICP备14017628号 公安备案：3301102013057</p>
+            <p>增值电信业务经营许可证：浙B2-20140369</p>
+        </div>
+        <div class="button">
+            <div class="left">
+                <a href="">在线咨询</a>
+            </div>
+            <div class="right">
+                <a href="#">请&nbsp;登录&nbsp;后查看联系电话</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    function myFun(result) {
+        var cityName = result.name;
+        //map.setCenter(cityName);
+
+        if (localStorage.name == "null") {
+            app.city = cityName
+        } else {
+            app.city = localStorage.getItem("name")
+        }
+    }
+    var myCity = new BMap.LocalCity();
+    myCity.get(myFun);
+</script>
+<script>
+	    //获取url中的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+
+    //接收URL中的参数booksId
+    var bpid = getUrlParam('bpid');
+	
+    var serverHost = getServerHost();
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            title: '',
+            createTime: '',
+            productId: '',
+            functionalUse: '',
+            region: '',
+            areaLower: '',
+            areaCap: '',
+            supportingDemand: '',
+            detailedDescription: '',
+            city: ''
+        },
+        methods: {
+            findData: function() {
+                var _this = app;
+                $.ajax({
+                    url: serverHost + '/buyingPurchase/queryBuyingPurchaseByBpid',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        bpid: bpid,
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.title = data.data.title;
+                        _this.createTime = data.data.createTime;
+                        _this.productId = data.data.productId;
+                        _this.functionalUse = data.data.functionalUse;
+                        _this.region = data.data.region;
+                        _this.areaCap = data.data.areaCap;
+                        _this.areaLower = data.data.areaLower;
+                        _this.supportingDemand = data.data.supportingDemand;
+                        _this.detailedDescription = data.data.detailedDescription;
+                    },
+                    error: function() {
+
+                    }
+                })
+            }
+        },
+    })
+    app.findData();
+    
+    function download(){
+    	window.location = 'http://back.zhanchengwlkj.com/DownloadProject/download/index.html?name=kufangdidi';
+    }
+</script>
+<script type="text/javascript">
+    var myScroll = new IScroll('#wrapper', {
+        mouseWheel: true,
+        scrollX: true,
+        click:true,
+        taps:true
+            // 横向滚动导航栏
+    });
+    // 初始化
+</script>

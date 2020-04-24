@@ -1,0 +1,315 @@
+html {
+    font-size: 62.5%;
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+    background: #EFEFEF;
+}
+
+body {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.header-one {
+    height: 50px;
+    width: 100%;
+    background: red;
+    line-height: 50px;
+}
+
+.header-one h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.header-one .map {
+    width: 15%;
+    height: 50px;
+    margin-left: 125px;
+    margin-top: -50px;
+    color: #ffffff;
+}
+
+.header-one .map span {
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    float: left;
+}
+
+.header-one .map img {
+    margin-top: 12px;
+    margin-left: 3px;
+    width: 15px;
+    height: 15px;
+}
+
+#atCity {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.phone {
+    height: 50px;
+    float: right;
+    margin-top: -100px;
+    margin-left: 40px;
+}
+
+.phone a {
+    margin-right: 15px;
+    font-weight: normal;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.phone img {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 5px;
+    left: -15px;
+}
+
+.header-two {
+    height: 60px;
+    line-height: 60px;
+    background: #ffffff;
+    margin-top: 0;
+}
+
+.header-two ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin-left: 3px;
+    padding-right: 45px;
+}
+
+.header-two ul li a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #333333;
+}
+
+#wrapper ul {
+    width: 210%;
+}
+
+#wrapper ul li {
+    width: 100px;
+    height: 60px;
+    background: #ffffff;
+    float: left;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+}
+
+#wrapper ul li a {
+    font-size: 18px;
+}
+
+.mycity {
+    position: relative;
+    top: -49px;
+    left: 130px;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.section {
+    margin-top: 125px;
+}
+
+.section .title {
+    width: 96%;
+    margin: 0 auto;
+    border-bottom: 1px solid #A6A6A6;
+}
+
+.section h3 {
+    font-size: 20px;
+    margin: 15px 0;
+    padding-top: 15px;
+}
+
+.section .title p {
+    font-size: 14px;
+    color: #A6A6A6;
+    margin: 15px 0;
+}
+
+.section .title p span {
+    color: red;
+}
+
+.section .ztnr {
+    width: 96%;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+.section .ztnr p {
+    font-size: 16px;
+    margin: 15px 0;
+    line-height: 25px;
+}
+
+.section .ztnr img {
+    width: 100%;
+    height: 400px;
+}
+
+.section .ztnr .img-p {
+    margin-top: 0;
+    font-size: 14px;
+}
+
+.area-content {
+    background: #F3F3F3;
+}
+
+.area-content .tuijian {
+    width: 96%;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 15px 0;
+    font-size: 16px;
+    color: red;
+    padding-bottom: 40px;
+}
+
+.area-content .tuijian h4 {
+    padding: 15px 0;
+}
+
+.area-content .list {
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px solid #D9D9D9;
+    color: #595959;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.area-content .list span {
+    color: red;
+}
+
+.area-content .list img {
+    position: relative;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+
+.text-f {
+    text-align: center;
+    padding: 30px 5px 30px 5px;
+    font-size: 14px;
+}
+
+.pagination .current {
+    padding: 5px 10px;
+    color: red;
+}
+
+.pagination a {
+    color: red;
+    padding: 5px 10px;
+}
+
+.pagination .current:active {
+    background: red;
+    color: #ffffff;
+}
+
+.fuwu {
+    margin-top: 10px;
+    background: #ffffff;
+    padding-bottom: 70px;
+    font-size: 12px;
+}
+
+.fuwu ul li {
+    list-style: none;
+    display: inline-block;
+    padding-right: 25px;
+}
+
+.fuwu ul {
+    position: relative;
+    left: 10px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.fuwu ul li:nth-child(1),
+.fuwu ul li:nth-child(2) {
+    border-right: 1px solid black;
+}
+
+.fuwu ul li:nth-child(2),
+.fuwu ul li:nth-child(3) {
+    margin-left: 25px;
+}
+
+.fuwu ul li a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.fuwu p {
+    text-align: center;
+    color: gray;
+    margin-top: 10px;
+}
+
+.simple {
+    width: 50px;
+    height: 50px;
+    background: rgba(70, 69, 69, 0.5);
+    margin-left: 20px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.flex p {
+    position: relative;
+    top: -90px;
+    left: 90px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.flex button {
+    padding: 7px 20px;
+    background: red;
+    position: absolute;
+    font-size: 18px;
+    top: 13px;
+    left: 520px;
+    border: 1px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: normal;
+}
+
+.flex {
+    width: 100%;
+    height: 60px;
+    line-height: 70px;
+    margin-top: -70px;
+    background: rgba(12, 10, 10, 0.67);
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+}

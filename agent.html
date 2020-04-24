@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>库房滴滴</title>
+    <link rel="Shortcut Icon" href="./src/assets/logo1.png" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YcOGuCXZOmSuEC3cKfDTbDlI"></script>
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/city.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/agent.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/weui.css">
+    <link rel="stylesheet" type="text/css" href="./src/bases/css/dialog.css">
+    <script src="./src/bases/js/iscroll.js"></script>
+    <script src="./src/bases/js/jquery-2.1.4.js"></script>
+    <script src="./src/bases/js/fastclick.js"></script>
+    <script src="src/bases/js/jquery-weui.js"></script>
+    <script src="./src/bases/js/city.js"></script>
+    <script src="./src/bases/js/getping.js"></script>
+    <script src="./src/bases/js/bscroll.min.js"></script>
+    <script src="./src/bases/js/jquery-1.11.3.min.js"></script>
+    <script src="./src/bases/js/Popt.js"></script>
+    <script src="./src/bases/js/cityJson.js"></script>
+    <script src="./src/bases/js/citySet.js"></script>
+    <script src="./src/bases/js/common.js"></script>
+    <script src="./src/bases/js/common.1.js"></script>
+    <script src="./src/bases/js/mDialogMin.js"></script>
+    <script src="./src/bases/js/phone.js"></script>
+    <script>
+        ! function(designWidth) {
+            if (/Android(?:\s+|\/)(\d+\.\d+)?/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / designWidth;
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',minimum-scale=' + phoneScale + ',maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=' + designWidth + ',target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=' + designWidth + ',user-scalable=no,target-densitydpi=device-dpi,minimal-ui,viewport-fit=cover">');
+            }
+        }(640);
+    </script>
+
+    <style>
+        #wrapper ul li:nth-child(7) a {
+            color: red;
+        }
+        
+        .city {
+            margin-left: -100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <div class="header-one">
+                <a href="index.html">
+                    <h2>库房滴滴</h2>
+                </a>
+                <div id="map" style="width:150px;font-size: 14px;margin-top:221px;margin-left:100px;height:50px;color: #292929;font-family: '微软雅黑'">
+                    <a href="allcity.html">
+                        <div class="mycity" @click="selectLocation()">
+                            {{city}}
+                            <img src="./src/assets/xiajiantou.png" style="width:10px;height:10px">
+                        </div>
+                    </a>
+                </div>
+                <div class="phone">
+                    <a href="tel:400-0571-233">
+                        <h4>400-0571-233</h4>
+                    </a>
+                    <img src="./src/assets/phone.png">
+                </div>
+            </div>
+            <div class="header-two">
+                <div id="wrapper">
+                    <ul>
+                        <li class=""><a href="index.html">网站首页</a></li>
+                        <li class="active"><a href="changfang.html">厂房</a></li>
+                        <li class=""><a href="cangku.html">仓库</a></li>
+                        <li class=""><a href="tudi.html">土地</a></li>
+                        <li class=""><a href="qiuzuqiugou.html">求租求购</a></li>
+                        <li class=""><a href="yuanqu.html">园区招商</a></li>
+                        <li class=""><a href="agent.html">经纪人</a></li>
+                        <li class=""><a href="encyclopedias.html">地产百科</a></li>
+                        <li class=""><a href="news.html">新闻资讯</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="javascript:;">
+                <div class="flex">
+                    <img src="./src/assets/logo1.png" class="simple">
+                    <p>APP 速度快一倍，流量省80%</p>
+                    <button onclick="download()">立即下载</button>
+                </div>
+            </a>
+        </div>
+
+        <div class="section">
+            <div class="agent-list" v-for="item in agentlist">
+                <a v-bind:href="'agent-xq.html?uid='+item.uid+'&fplHouse='+item.fplHouse+'&popularValue='+item.popularValue">
+                    <div class="left">
+                        <img :src="item.avatarUrl">
+                    </div>
+                    <div class="right">
+                        <h3>{{item.userName}}<span>VIP</span></h3>
+                        <p>主营区域:&nbsp;&nbsp;{{item.mainArea}}</p>
+                        <p class="popularity">
+                            人气:&nbsp;&nbsp;{{item.popularValue}}&nbsp;&nbsp;房源:&nbsp;&nbsp;{{item.fplHouse}}&nbsp;&nbsp;评分:&nbsp;&nbsp;5.0
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="text-f">
+                <div class="pagination">
+                    <a v-on:click="pageClickSub()">上一页</a>
+                    <a v-on:click="pageClickAdd()">下一页</a>
+                </div>
+            </div>
+        </div>
+        <div data-role="page" id="test">
+            <div class="ui-content">
+                <ul data-role="listview">
+                    <li>
+                        <span id="city" style="padding-left:5px;font-size: 20px">区域选择
+                            <img src="./src/assets/bottomjiantou.png">
+                        </span>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="pai" v-on:click="toggle()">排序<img src="./src/assets/bottomjiantou.png"></div>
+            <div v-show="show" class="yc">
+                <ul>
+                    <li onclick="replaceDoc()">按热度排序</li>
+                    <li onclick="replaceDoc()">按最新排序</li>
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    var serverHost = getServerHost();
+    var app = new Vue({
+        el: '#app',
+        data: {
+            agentlist: [],
+            pageNum: 1,
+            pageSize: 20,
+            totalPages: 1,
+            type: 2,
+            show: false,
+            city: ''
+        },
+        methods: {
+            findData: function(pageNum) {
+                var _this = app;
+                $.ajax({
+                    url: serverHost + '/personal/brokerList',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        pageNum: _this.pageNum,
+                        pageSize: _this.pageSize,
+                        type: _this.type,
+                    },
+                    async: false,
+                    success: function(data) {
+                        _this.agentlist = data.data.content;
+                        _this.totalPages = data.data.totalPages;
+                    },
+                    error: function() {
+
+                    }
+                })
+            },
+
+            toggle: function() {
+                this.show = !this.show;
+            },
+            //上一页
+            pageClickSub: function() {
+                if (this.pageNum <= 1) {
+                    Dialog.init('已经是第一页了', 1100);
+                } else {
+                    this.pageNum = this.pageNum - 1;
+                    this.findData();
+                }
+            },
+            //下一页
+            pageClickAdd: function() {
+                if (this.pageNum >= this.totalPages) {
+                    Dialog.init('没有更多了', 1100);
+                } else {
+                    this.pageNum = this.pageNum + 1;
+                    this.findData();
+                }
+            },
+        },
+    })
+
+    function replaceDoc() {
+        window.location.replace("agent.html")
+    }
+    $("#city").click(function(e) {
+        SelCity(this, e);
+        console.log(this);
+    });
+    app.findData();
+
+    function download() {
+        window.location = 'http://back.zhanchengwlkj.com/DownloadProject/download/index.html?name=kufangdidi';
+    }
+</script>
+<script type="text/javascript">
+    var myScroll = new IScroll('#wrapper', {
+        mouseWheel: true,
+        scrollX: true,
+        click: true,
+        taps: true
+            // 横向滚动导航栏
+    });
+    // 初始化
+</script>
+<script>
+    function myFun(result) {
+        var cityName = result.name;
+        //map.setCenter(cityName);
+
+        if (localStorage.name == "null") {
+            app.city = cityName
+        } else {
+            app.city = localStorage.getItem("name")
+        }
+    }
+    var myCity = new BMap.LocalCity();
+    myCity.get(myFun);
+</script>

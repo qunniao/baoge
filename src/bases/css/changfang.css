@@ -1,0 +1,607 @@
+    html {
+        font-size: 62.5%;
+        height: 100%;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    body {
+        height: 100%;
+        -webkit-tap-highlight-color: transparent;
+        background: #eeeeee;
+    }
+    
+    .header {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    .header-one {
+        height: 60px;
+        width: 100%;
+        background: red;
+        line-height: 60px;
+        display: flex;
+    }
+    
+    .header-one h2 {
+        font-size: 20px;
+        color: #ffffff;
+        margin-left: 10px;
+        width: 100px;
+    }
+    
+    .header-one .map {
+        width: 15%;
+        height: 40px;
+        margin-left: 125px;
+        margin-top: -40px;
+        color: #ffffff;
+    }
+    
+    .header-one .map span {
+        text-align: center;
+        line-height: 40px;
+        font-size: 14px;
+        float: left;
+    }
+    
+    .header-one .map img {
+        margin-top: 12px;
+        margin-left: 3px;
+        width: 15px;
+        height: 15px;
+    }
+    
+    .phone {
+        float: right;
+        height: 60px;
+        margin-left: 240px;
+    }
+    
+    .phone a {
+        color: #ffffff;
+        font-size: 16px;
+        margin-right: 5px;
+    }
+    
+    .phone img {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top: 4px;
+        left: 0px;
+    }
+    
+    .header-two {
+        height: 60px;
+        line-height: 60px;
+        background: #ffffff;
+        margin-top: 0;
+    }
+    
+    .header-two ul li {
+        list-style-type: none;
+        display: inline-block;
+        padding-right: 45px;
+    }
+    
+    .header-two ul li a {
+        line-height: 60px;
+        text-decoration: none;
+        color: #333333;
+        font-size: 18px;
+    }
+    
+    .header-three {
+        height: 70px;
+        line-height: 70px;
+        background: #ffffff;
+        border-bottom: 1px solid;
+    }
+    
+    .header-three ul li {
+        list-style-type: none;
+        display: inline-block;
+        font-size: 18px;
+        margin-top: 5px;
+    }
+    
+    .header-three ul li img {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .header-three ul li:nth-child(3) {
+        position: relative;
+        left: 510px;
+    }
+    
+    .header-three ul li:nth-child(2) {
+        position: absolute;
+        left: 290px;
+    }
+    
+    .header-three ul li:nth-child(1) {
+        position: absolute;
+        left: 80px;
+    }
+    
+    .header-three .quyu {
+        width: 100%;
+        padding-bottom: 10px;
+        position: relative;
+        margin-top: -8px;
+        z-index: 100;
+        background: rgb(240, 242, 243);
+        float: left;
+    }
+    
+    .header-three .quyu button {
+        font-size: 16px;
+        color: #333333;
+        width: 100px;
+        background: #ffffff;
+        padding: 10px 5px;
+        margin-left: 45px;
+        border: 1px solid #333333;
+        border-radius: 5px;
+    }
+    
+    .header-three .other {
+        padding-bottom: 20px;
+        overflow: auto;
+        background: rgb(240, 242, 243);
+        margin-top: -8px;
+        position: relative;
+        z-index: 100;
+    }
+    
+    .header-three .other button {
+        font-size: 16px;
+        color: #333333;
+        width: 120px;
+        background: #ffffff;
+        padding: 10px 0px;
+        margin-left: 45px;
+        border: 1px solid #333333;
+        border-radius: 5px;
+    }
+    
+    .header-three .other .mianji {
+        margin-left: 5%;
+        width: 90%;
+        padding-bottom: 10PX;
+        border-bottom: 1px solid #333333;
+        float: left;
+    }
+    
+    .header-three .other .mianji h3 {
+        font-size: 20px;
+    }
+    
+    .header-three .other .zhuangtai {
+        margin-left: 5%;
+        width: 90%;
+        padding-bottom: 10PX;
+    }
+    
+    .header-three .other .zhuangtai h3 {
+        font-size: 16px;
+    }
+    
+    .header-three .other .queding {
+        width: 90%;
+        height: 50px;
+        background: red;
+        color: #ffffff;
+        border: 1px;
+    }
+    
+    .header-three .leixing {
+        width: 100%;
+        height: 60px;
+        margin-top: -8px;
+        background: rgb(240, 242, 243);
+        position: relative;
+        z-index: 100;
+    }
+    
+    .header-three .leixing button {
+        font-size: 16px;
+        color: #333333;
+        width: 100px;
+        background: #ffffff;
+        padding: 10px 5px;
+        margin-left: 45px;
+        border: 1px solid #333333;
+        border-radius: 5px;
+    }
+    
+    .section {
+        margin-top: 110px;
+    }
+    
+    .liebiao {
+        background: #ffffff;
+        height: 95px;
+        border-bottom: 1px solid #9e9d9d;
+        margin-left: 15px;
+    }
+    
+    .liebiao a {
+        color: #333333;
+    }
+    
+    .liebiao h3 {
+        font-size: 18px;
+        margin-left: 10px;
+    }
+    
+    .youdian {
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    
+    .youdian span {
+        padding: 2px;
+        font-size: 16px;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+    
+    .youdian span:nth-child(1) {
+        border: 1px solid purple;
+        color: purple;
+    }
+    
+    .youdian span:nth-child(2) {
+        border: 1px solid rgb(31, 7, 97);
+        color: rgb(31, 7, 97);
+    }
+    
+    .youdian span:nth-child(3) {
+        border: 1px solid rgb(17, 83, 109);
+        color: rgb(16, 89, 117);
+    }
+    
+    .youdian span:nth-child(4) {
+        border: 1px solid brown;
+        color: brown;
+    }
+    
+    .youdian span:nth-child(5) {
+        border: 1px solid rgba(6, 109, 64, 0.541);
+        color: rgba(6, 109, 64, 0.541);
+    }
+    
+    .liebiao p {
+        font-size: 16px;
+        float: right;
+        margin-right: 20px;
+        color: rgb(175, 88, 11);
+        margin-top: -13px;
+    }
+    
+    .liebiao2 {
+        background: #ffffff;
+        height: 150px;
+        border-bottom: 1px solid #9e9d9d;
+        padding-top: 10px;
+        padding-left: 10px;
+        display: flex;
+    }
+    
+    .liebiao2 a {
+        color: #333333;
+    }
+    
+    .liebiao2 .area-img img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .area-content {
+        float: left;
+        margin-left: 15px;
+        margin-top: -10px;
+        height: 160px;
+    }
+    
+    .area-content h5 {
+        font-size: 18px;
+        color: black;
+        margin-top: 25px;
+    }
+    
+    .area-content p {
+        font-size: 16px;
+        color: #333333;
+        margin-top: 20px;
+    }
+    
+    .area-content p span {
+        float: right;
+        color: rgb(175, 88, 11);
+        font-size: 16px;
+    }
+    
+    .area-content .flag-line {
+        margin-top: 35px;
+        font-size: 16px;
+    }
+    
+    .area-content .flag-line span {
+        padding: 0 3px;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+    
+    .area-content .flag-line span:nth-child(1) {
+        color: purple;
+        border: 1px solid purple;
+    }
+    
+    .area-content .flag-line span:nth-child(2) {
+        color: rgb(19, 3, 58);
+        border: 1px solid rgb(19, 3, 58);
+    }
+    
+    .area-content .flag-line span:nth-child(3) {
+        color: rgb(4, 45, 112);
+        border: 1px solid rgb(4, 45, 112);
+    }
+    
+    .area-content .flag-line span:nth-child(4) {
+        color: brown;
+        border: 1px solid brown;
+    }
+    
+    .footer {
+        background: #ffffff;
+    }
+    
+    .footer .text-f {
+        text-align: center;
+        padding: 20px 5px 0 5px;
+        font-size: 14px;
+    }
+    
+    .pagination .current {
+        padding: 5px 10px;
+        border: 1px solid red;
+        color: red;
+    }
+    
+    .pagination {
+        margin-top: 20px;
+        text-align: center;
+    }
+    
+    .pagination a {
+        border: 1px solid red;
+        color: red;
+        padding: 5px 10px;
+        font-size: 20px;
+        margin: 0 10px;
+    }
+    
+    .pagination .current:active {
+        background: red;
+        color: #ffffff;
+    }
+    
+    .fuwu {
+        margin-top: 10px;
+        background: #ffffff;
+        padding-bottom: 70px;
+        font-size: 12px;
+    }
+    
+    .fuwu ul li {
+        list-style: none;
+        display: inline-block;
+        padding-right: 25px;
+    }
+    
+    .fuwu ul {
+        position: relative;
+        top: 20px;
+        left: 10px;
+        text-align: center;
+        padding-bottom: 30px;
+    }
+    
+    .fuwu ul li:nth-child(1),
+    .fuwu ul li:nth-child(2) {
+        border-right: 1px solid black;
+    }
+    
+    .fuwu ul li:nth-child(2),
+    .fuwu ul li:nth-child(3) {
+        margin-left: 25px;
+    }
+    
+    .fuwu ul li a {
+        color: #333333;
+        text-decoration: none;
+    }
+    
+    .fuwu p {
+        text-align: center;
+        color: gray;
+        margin-top: 10px;
+    }
+    
+    .simple {
+        width: 50px;
+        height: 50px;
+        background: rgba(63, 63, 63, 0.5);
+        margin-left: 20px;
+        margin-top: 5px;
+        border-radius: 5px;
+    }
+    
+    .flex p {
+        position: relative;
+        top: -90px;
+        left: 90px;
+        font-size: 18px;
+        color: #ffffff;
+    }
+    
+    .flex button {
+        padding: 7px 20px;
+        background: red;
+        position: absolute;
+        font-size: 18px;
+        top: 13px;
+        left: 520px;
+        border: 1px;
+        border-radius: 5px;
+        color: #ffffff;
+        font-weight: normal;
+    }
+    
+    .flex {
+        width: 100%;
+        height: 60px;
+        line-height: 70px;
+        margin-top: -70px;
+        background: rgba(12, 10, 10, 0.67);
+        position: fixed;
+        bottom: 0;
+        z-index: 1;
+    }
+    
+    #wrapper ul {
+        width: 204%;
+    }
+    
+    #wrapper ul li {
+        width: 100px;
+        height: 60px;
+        background: #ffffff;
+        float: left;
+        text-align: center;
+        line-height: 60px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    
+    .mycity {
+        text-align: center;
+        font-size: 18px;
+        margin: 20px 0;
+        color: #ffffff;
+        margin-top: -0;
+        margin-left: 0;
+    }
+    
+    .mycity img {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    
+    .list-box {
+        padding: 0 43px;
+    }
+    
+    .list-item {
+        height: 43px;
+        line-height: 42px;
+        border-bottom: 1px solid #ECECEC;
+        text-align: center;
+    }
+    
+    .list-item input {
+        border: none;
+        text-align: center;
+        outline: none;
+    }
+    
+    .small-icon {
+        display: inline-block;
+        width: 100%;
+        vertical-align: top;
+    }
+    
+    .toast {
+        position: fixed;
+        z-index: 2000;
+        left: 50%;
+        top: 45%;
+        transition: all .5s;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -o-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        text-align: center;
+        border-radius: 5px;
+        color: #FFF;
+        background: rgba(17, 17, 17, 0.7);
+        height: 45px;
+        line-height: 45px;
+        padding: 0 15px;
+        max-width: 150px;
+    }
+
+    
+    .city {
+        margin-left: -85px;
+    }
+    
+    .area-img {
+        margin: 10px 0 0 10px
+    }
+    
+    .zhiding img {
+        position: relative;
+        left: -30px;
+        top: 11px;
+    }
+    
+    .zhiding span {
+        position: relative;
+        left: 25px;
+        z-index: 1;
+        color: white;
+        font-weight: normal;
+    }
+    
+    .header-three .leixing a {
+        font-size: 18px;
+        color: #333333;
+        width: 120px;
+        background: #ffffff;
+        padding: 5px 10px;
+        margin-left: 45px;
+        border: 1px solid #333333;
+        border-radius: 5px;
+    }
+    
+    .header-three .mianji a {
+        font-size: 18px;
+        color: #333333;
+        background: #ffffff;
+        padding: 5px 17px;
+        margin-left: 10px;
+        border: 1px solid #333333;
+        border-radius: 5px;
+    }
+    
+    .header-three .quyu a {
+        font-size: 18px;
+        color: #333333;
+        line-height: 35px;
+        background: #ffffff;
+        padding: 0 12px;
+        margin-left: 20px;
+        border: 1px solid #333333;
+        border-radius: 5px;
+        float: left;
+        margin-top: 10px;
+    }
